@@ -9,10 +9,12 @@ def index():
 
 @app.route("/api/key")
 def get_key():
-    # La API key de Anthropic se guarda como variable de entorno en Render
-    # NUNCA la pongas hardcodeada aqui
     return jsonify({"key": os.environ.get("ANTHROPIC_API_KEY", "")})
 
+@app.route("/health")
+def health():
+    return "OK", 200
+
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
