@@ -9,10 +9,10 @@
 :root{--bg:#0A0F0D;--bg2:#0E1512;--card:#152019;--card2:#1A2820;--bord:rgba(255,255,255,0.07);--gr:#3DBA7A;--gr2:#2D8F5B;--am:#E8A84C;--rd:#E05C5C;--bl:#5CA8E0;--tx:#EDF2EE;--mu:#7A9484;--di:#3A5448;--glow:rgba(61,186,122,0.18);}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;overflow-x:hidden;}
-.hdr{background:rgba(10,15,13,.97);padding:14px 18px 0;position:sticky;top:0;z-index:200;border-bottom:1px solid var(--bord);}
+.hdr{background:rgba(10,15,13,.97);backdrop-filter:blur(12px);padding:14px 18px 0;position:sticky;top:0;z-index:200;border-bottom:1px solid var(--bord);}
 .hdr-top{display:flex;align-items:center;gap:11px;padding-bottom:12px;}
 .logo{width:38px;height:38px;background:linear-gradient(135deg,var(--gr),var(--gr2));border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 0 18px var(--glow);flex-shrink:0;}
-.hdr-text h1{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;}
+.hdr-text h1{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;letter-spacing:.02em;}
 .hdr-text p{font-size:.68rem;color:var(--mu);margin-top:1px;}
 .hdr-badge{margin-left:auto;background:rgba(61,186,122,.1);border:1px solid rgba(61,186,122,.25);color:var(--gr);font-size:.62rem;font-weight:600;padding:4px 9px;border-radius:20px;white-space:nowrap;}
 .tabs{display:flex;overflow-x:auto;scrollbar-width:none;gap:2px;padding:0 2px;}
@@ -22,19 +22,1321 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--tx);min-he
 .panel{display:none;padding:16px 15px 110px;animation:fadeUp .3s ease;}
 .panel.active{display:block;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.stitle{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--tx);margin-bottom:5px;}
+.ssub{font-size:.76rem;color:var(--mu);margin-bottom:16px;line-height:1.6;}
+.card{background:var(--card);border:1px solid var(--bord);border-radius:15px;padding:16px;margin-bottom:12px;}
+.disclaimer{background:rgba(232,168,76,.07);border:1px solid rgba(232,168,76,.2);border-radius:11px;padding:10px 13px;font-size:.71rem;color:var(--am);line-height:1.5;margin-bottom:14px;display:flex;gap:8px;align-items:flex-start;}
+.alert{background:rgba(224,92,92,.07);border:1px solid rgba(224,92,92,.22);border-radius:11px;padding:11px 13px;font-size:.74rem;color:#E8A0A0;line-height:1.5;margin-bottom:12px;display:flex;gap:8px;align-items:flex-start;}
+.info-box{background:rgba(92,168,224,.07);border:1px solid rgba(92,168,224,.2);border-radius:11px;padding:11px 13px;font-size:.74rem;color:var(--bl);line-height:1.5;margin-bottom:12px;display:flex;gap:8px;align-items:flex-start;}
+/* CHAT */
+.chat-hero{background:linear-gradient(135deg,#0A1A12,#122318);border:1px solid rgba(61,186,122,.18);border-radius:18px;padding:22px 18px;margin-bottom:16px;text-align:center;position:relative;overflow:hidden;}
+.chat-hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,rgba(61,186,122,.1),transparent 70%);border-radius:50%;}
+.hero-ico{font-size:36px;margin-bottom:8px;display:block;}
+.chat-hero h2{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;margin-bottom:5px;}
+.chat-hero p{font-size:.77rem;color:var(--mu);line-height:1.5;}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px;}
+.chip{background:var(--card2);border:1px solid var(--bord);color:var(--mu);padding:6px 12px;border-radius:18px;font-size:.71rem;cursor:pointer;transition:all .2s;font-family:'Outfit',sans-serif;}
+.chip:active{background:rgba(61,186,122,.1);color:var(--gr);border-color:rgba(61,186,122,.35);}
+.chat-box{background:var(--card);border:1px solid var(--bord);border-radius:16px;overflow:hidden;}
+.messages{height:340px;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;scroll-behavior:smooth;}
+.messages::-webkit-scrollbar{width:3px;}
+.messages::-webkit-scrollbar-thumb{background:var(--bord);}
+.msg{display:flex;gap:9px;align-items:flex-start;animation:msgIn .22s ease;}
+@keyframes msgIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+.msg.user{flex-direction:row-reverse;}
+.ava{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+.ava.bot{background:linear-gradient(135deg,var(--gr2),var(--gr));}
+.ava.usr{background:linear-gradient(135deg,#3A6AE0,#6B3AE0);}
+.bbl{max-width:83%;padding:9px 13px;border-radius:13px;font-size:.8rem;line-height:1.58;}
+.bbl.bot{background:var(--card2);color:var(--tx);border-bottom-left-radius:3px;}
+.bbl.usr{background:linear-gradient(135deg,#152030,#1A1A40);color:var(--tx);border-bottom-right-radius:3px;}
+.bbl strong{color:var(--gr);}.bbl ul{padding-left:15px;margin-top:5px;}.bbl li{margin-bottom:3px;}
+.typing{display:flex;gap:4px;align-items:center;padding:3px 0;}
+.dot{width:6px;height:6px;background:var(--mu);border-radius:50%;animation:bounce 1.2s infinite;}
+.dot:nth-child(2){animation-delay:.2s;}.dot:nth-child(3){animation-delay:.4s;}
+@keyframes bounce{0%,80%,100%{transform:translateY(0);}40%{transform:translateY(-5px);}}
+.chat-inp{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--bord);background:var(--bg2);}
+.chat-inp input{flex:1;background:var(--card);border:1px solid var(--bord);border-radius:22px;padding:9px 15px;font-size:.8rem;font-family:'Outfit',sans-serif;color:var(--tx);outline:none;transition:border-color .2s;}
+.chat-inp input:focus{border-color:var(--gr);}
+.chat-inp input::placeholder{color:var(--di);}
+.send-btn{width:40px;height:40px;background:linear-gradient(135deg,var(--gr2),var(--gr));border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;transition:all .2s;flex-shrink:0;box-shadow:0 3px 12px var(--glow);}
+.send-btn:hover{transform:scale(1.07);}.send-btn:disabled{opacity:.4;cursor:default;transform:none;}
+/* COLUMNA */
+.spine-wrap{display:flex;gap:12px;align-items:flex-start;overflow-x:auto;}
+.spine-legend{flex:1;min-width:150px;}
+.leg-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:10px;cursor:pointer;}
+.leg-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0;margin-top:3px;}
+.leg-text h4{font-size:.74rem;font-weight:600;color:var(--tx);}
+.leg-text p{font-size:.65rem;color:var(--mu);line-height:1.4;margin-top:1px;}
+.spine-info{background:var(--card2);border:1px solid var(--bord);border-radius:10px;padding:11px 13px;margin-top:12px;font-size:.73rem;color:var(--mu);line-height:1.55;display:none;}
+.spine-info.show{display:block;animation:fadeUp .2s ease;}
+.spine-info h4{color:var(--gr);font-size:.78rem;margin-bottom:5px;}
+.vg{cursor:pointer;transition:filter .2s;}.vg:hover{filter:brightness(1.3);}
+.vg.av{filter:brightness(1.6) drop-shadow(0 0 7px rgba(61,186,122,.9));}
+.dg{cursor:pointer;}.dg:hover{filter:brightness(1.3);}
+/* CAUSA-EFECTO */
+.ce-card{background:var(--card);border:1px solid var(--bord);border-radius:14px;margin-bottom:11px;overflow:hidden;}
+.ce-hdr{display:flex;align-items:center;gap:11px;padding:13px 14px;cursor:pointer;}
+.ce-ico{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.ce-meta h3{font-size:.85rem;font-weight:600;color:var(--tx);}
+.ce-meta p{font-size:.68rem;color:var(--mu);margin-top:2px;}
+.ce-body{display:none;padding:0 14px 14px;border-top:1px solid var(--bord);}
+.ce-body.open{display:block;animation:fadeUp .2s ease;}
+.ce-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
+.ce-col h4{font-size:.73rem;font-weight:600;margin-bottom:6px;}
+.ce-col ul{list-style:none;padding:0;}
+.ce-col ul li{font-size:.7rem;color:var(--mu);padding:4px 0;border-bottom:1px solid var(--bord);display:flex;gap:6px;line-height:1.4;}
+.ce-col ul li:last-child{border-bottom:none;}
+.ce-col.causa ul li::before{content:'•';color:var(--bl);flex-shrink:0;}
+.ce-col.efecto ul li::before{content:'•';color:var(--am);flex-shrink:0;}
+.bw{margin-top:10px;background:var(--card2);border-radius:9px;padding:9px 11px;}
+.bw-t{font-size:.69rem;color:var(--mu);margin-bottom:7px;font-weight:500;}
+.br-row{display:flex;gap:6px;align-items:center;margin-bottom:5px;}
+.br-row > span:first-child{font-size:.65rem;color:var(--mu);width:90px;flex-shrink:0;}
+.br-row > span:last-child{font-size:.64rem;white-space:nowrap;}
+.btrack{height:7px;border-radius:4px;flex:1;background:rgba(255,255,255,.06);}
+.bfill{height:7px;border-radius:4px;}
+.bg2{background:var(--gr);}.ba2{background:var(--am);}.br2{background:var(--rd);}
+.ce-tip{background:rgba(61,186,122,.06);border-left:3px solid var(--gr);padding:8px 11px;border-radius:0 9px 9px 0;font-size:.71rem;color:var(--mu);margin-top:10px;line-height:1.5;}
+/* EJERCICIOS */
+.filter-row{display:flex;gap:7px;overflow-x:auto;margin-bottom:14px;scrollbar-width:none;padding-bottom:2px;}
+.filter-row::-webkit-scrollbar{display:none;}
+.fbtn{flex-shrink:0;padding:6px 13px;border-radius:18px;font-size:.71rem;cursor:pointer;border:1px solid var(--bord);background:var(--card);color:var(--mu);font-family:'Outfit',sans-serif;transition:all .2s;}
+.fbtn.active{background:rgba(61,186,122,.14);color:var(--gr);border-color:rgba(61,186,122,.38);}
+.ex-card{background:var(--card);border:1px solid var(--bord);border-radius:14px;overflow:hidden;margin-bottom:11px;cursor:pointer;transition:border-color .2s;}
+.ex-card.oc{border-color:rgba(61,186,122,.35);}
+.ex-hdr{display:flex;align-items:center;gap:11px;padding:13px 14px;}
+.ex-ico{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;}
+.ex-meta{flex:1;}.ex-meta h3{font-size:.85rem;font-weight:600;color:var(--tx);}
+.ex-meta span{font-size:.68rem;color:var(--mu);}
+.ex-chev{color:var(--di);font-size:11px;transition:transform .2s;}
+.ex-card.oc .ex-chev{transform:rotate(180deg);}
+.bdg{font-size:.62rem;padding:2px 8px;border-radius:9px;font-weight:600;margin-right:5px;}
+.bv{background:rgba(61,186,122,.13);color:#3DBA7A;}.bam{background:rgba(232,168,76,.13);color:#E8A84C;}
+.ex-body{display:none;padding:0 14px 14px;border-top:1px solid var(--bord);animation:fadeUp .2s ease;}
+.ex-body.open{display:block;}
+.ex-steps{list-style:none;counter-reset:st;margin-top:10px;}
+.ex-steps li{counter-increment:st;display:flex;gap:9px;align-items:flex-start;margin-bottom:9px;font-size:.77rem;line-height:1.55;color:var(--tx);}
+.ex-steps li::before{content:counter(st);min-width:20px;height:20px;background:var(--gr2);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;flex-shrink:0;margin-top:1px;}
+.ex-tip{background:rgba(61,186,122,.06);border-left:3px solid var(--gr);padding:8px 11px;border-radius:0 9px 9px 0;font-size:.72rem;color:var(--mu);margin-top:9px;line-height:1.5;}
+.ex-timer{font-size:.7rem;color:var(--di);margin-top:8px;}
+/* CONDICIONES */
+.cond-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:16px;}
+.cond-card{background:var(--card);border:1px solid var(--bord);border-radius:13px;padding:13px;cursor:pointer;transition:all .2s;}
+.cond-card.sel{border-color:rgba(61,186,122,.45);background:rgba(61,186,122,.06);}
+.cond-emo{font-size:24px;margin-bottom:5px;}
+.cond-name{font-size:.76rem;font-weight:600;color:var(--tx);}
+.cond-desc{font-size:.65rem;color:var(--mu);margin-top:2px;}
+.cond-det{background:var(--card);border:1px solid rgba(61,186,122,.2);border-radius:15px;padding:16px;margin-bottom:12px;animation:fadeUp .22s ease;}
+.cond-det h3{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--tx);margin-bottom:7px;}
+.cond-det p{font-size:.77rem;color:var(--mu);line-height:1.6;margin-bottom:9px;}
+.cond-det ul{list-style:none;padding:0;}
+.cond-det ul li{font-size:.75rem;color:var(--tx);padding:5px 0;border-bottom:1px solid var(--bord);display:flex;gap:7px;line-height:1.5;}
+.cond-det ul li::before{content:'→';color:var(--gr);flex-shrink:0;font-size:.72rem;margin-top:1px;}
+.cond-det ul li:last-child{border-bottom:none;}
+/* POSTURA */
+.pos-card{background:var(--card);border:1px solid var(--bord);border-radius:13px;padding:14px;display:flex;gap:13px;align-items:flex-start;margin-bottom:11px;}
+.pos-ico{width:46px;height:46px;background:var(--card2);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.pos-info h3{font-size:.83rem;font-weight:600;color:var(--tx);margin-bottom:5px;}
+.pos-info p{font-size:.72rem;color:var(--mu);line-height:1.6;}
+.gd{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gr);margin-right:4px;vertical-align:middle;}
+.rd{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--rd);margin-right:4px;vertical-align:middle;}
+/* SUPLEMENTOS */
+.sup-card{background:var(--card);border:1px solid var(--bord);border-radius:13px;padding:13px 15px;display:flex;gap:11px;align-items:flex-start;margin-bottom:10px;}
+.sup-ico{font-size:22px;flex-shrink:0;margin-top:2px;}
+.sup-info h3{font-size:.82rem;font-weight:600;color:var(--tx);margin-bottom:3px;}
+.sup-info p{font-size:.72rem;color:var(--mu);line-height:1.5;}
+.stg{display:inline-block;font-size:.62rem;padding:2px 7px;border-radius:7px;margin-top:4px;font-weight:600;margin-right:4px;}
+.sg{background:rgba(61,186,122,.13);color:var(--gr);}.samb{background:rgba(232,168,76,.13);color:var(--am);}.sb{background:rgba(92,168,224,.13);color:var(--bl);}
+/* PRIMEROS AUXILIOS */
+.fa-card{background:var(--card);border:1px solid var(--bord);border-radius:14px;padding:14px;margin-bottom:11px;}
+.fa-hdr{display:flex;align-items:center;gap:11px;cursor:pointer;}
+.fa-ico{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.fa-meta h3{font-size:.83rem;font-weight:600;color:var(--tx);}
+.fa-meta p{font-size:.67rem;color:var(--mu);margin-top:2px;}
+.fa-body{display:none;margin-top:12px;border-top:1px solid var(--bord);padding-top:11px;}
+.fa-body.open{display:block;animation:fadeUp .2s ease;}
+.step-row{display:flex;gap:9px;margin-bottom:8px;}
+.step-num{min-width:22px;height:22px;background:rgba(224,92,92,.18);color:#E8A0A0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;flex-shrink:0;}
+.step-txt{font-size:.75rem;color:var(--mu);line-height:1.55;}
+/* SEMAFORO */
+.sem-item{display:flex;gap:11px;align-items:flex-start;background:var(--card);border:1px solid var(--bord);border-radius:13px;padding:13px;margin-bottom:10px;}
+.sem-dot{width:13px;height:13px;border-radius:50%;flex-shrink:0;margin-top:3px;}
+.sdg{background:var(--gr);box-shadow:0 0 8px rgba(61,186,122,.5);}
+.sda{background:var(--am);box-shadow:0 0 8px rgba(232,168,76,.5);}
+.sdr{background:var(--rd);box-shadow:0 0 8px rgba(224,92,92,.5);}
+.sem-txt h4{font-size:.8rem;font-weight:600;color:var(--tx);margin-bottom:4px;}
+.sem-txt p{font-size:.72rem;color:var(--mu);line-height:1.5;}
+/* AUTOTEST */
+.test-card{background:var(--card);border:1px solid var(--bord);border-radius:15px;padding:16px;margin-bottom:13px;}
+.test-card h3{font-size:.88rem;font-weight:600;color:var(--tx);margin-bottom:10px;}
+.test-q{font-size:.77rem;color:var(--mu);margin-bottom:8px;}
+.test-opts{display:flex;flex-direction:column;gap:6px;margin-bottom:12px;}
+.test-opt{background:var(--card2);border:1px solid var(--bord);border-radius:9px;padding:9px 13px;font-size:.76rem;color:var(--tx);cursor:pointer;transition:all .2s;text-align:left;font-family:'Outfit',sans-serif;}
+.test-opt.sel,.test-opt:active{background:rgba(61,186,122,.09);border-color:rgba(61,186,122,.38);color:var(--gr);}
+.test-res{background:rgba(61,186,122,.06);border:1px solid rgba(61,186,122,.18);border-radius:11px;padding:12px;font-size:.77rem;color:var(--tx);line-height:1.6;display:none;}
+.test-res.show{display:block;}
+.fab{position:fixed;bottom:76px;right:15px;width:42px;height:42px;background:linear-gradient(135deg,var(--gr2),var(--gr));border-radius:50%;border:none;display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;box-shadow:0 4px 18px var(--glow);z-index:150;opacity:0;transition:opacity .3s;}
+.fab.show{opacity:1;}
 </style>
 </head>
 <body>
+
 <div class="hdr">
   <div class="hdr-top">
-    <div class="logo">&#x1F9B4;</div>
-    <div class="hdr-text"><h1>QuiroBot Pro</h1><p>Cargando...</p></div>
+    <div class="logo">🦴</div>
+    <div class="hdr-text"><h1>QuiroBot Pro</h1><p>Tu guia de salud vertebral con IA</p></div>
     <div class="hdr-badge">IA ACTIVA</div>
   </div>
+  <div class="tabs">
+    <div class="tab active" onclick="showTab('chat',this)">💬 Consulta</div>
+    <div class="tab" onclick="showTab('columna',this)">🦴 Mi Columna</div>
+    <div class="tab" onclick="showTab('causas',this)">⚠️ Causa-Efecto</div>
+    <div class="tab" onclick="showTab('ejercicios',this)">🧘 Ejercicios</div>
+    <div class="tab" onclick="showTab('condiciones',this)">🩺 Condiciones</div>
+    <div class="tab" onclick="showTab('postura',this)">🪑 Postura</div>
+    <div class="tab" onclick="showTab('nutricion',this)">💊 Nutricion</div>
+    <div class="tab" onclick="showTab('primeros',this)">🚨 Primeros Aux</div>
+    <div class="tab" onclick="showTab('medico',this)">🏥 Cuando ir</div>
+    <div class="tab" onclick="showTab('autotest',this)">📋 Autotest</div>
+  </div>
 </div>
-<div style="display:flex;align-items:center;justify-content:center;height:80vh;flex-direction:column;gap:16px;">
-  <div style="font-size:48px">&#x1F9B4;</div>
-  <p style="color:var(--mu);font-size:.9rem;">Por favor usa el archivo quirobot.html completo</p>
+
+<!-- ═══ CHAT ═══ -->
+<div class="panel active" id="panel-chat">
+  <div class="chat-hero">
+    <span class="hero-ico">🦴</span>
+    <h2>Tu Quiropractico Virtual</h2>
+    <p>Describime tu dolor y te oriento paso a paso.<br>Hernia, ciatica, cervical, trapecio y mas.</p>
+  </div>
+  <div class="disclaimer"><span>⚠️</span><span>Orientacion educativa. Siempre consulta a un profesional para diagnostico y tratamiento.</span></div>
+  <p style="font-size:.73rem;color:var(--mu);margin-bottom:9px;">Consultas frecuentes:</p>
+  <div class="chips">
+    <div class="chip" onclick="askChip('Tengo hernia de disco L4-L5 y mucho dolor de espalda, que hago?')">🩻 Hernia disco</div>
+    <div class="chip" onclick="askChip('Dolor de ciatica que baja por la pierna, que puedo hacer?')">⚡ Ciatica</div>
+    <div class="chip" onclick="askChip('Me duele el cuello y las cervicales, como lo alivio?')">🔴 Cervicales</div>
+    <div class="chip" onclick="askChip('Tengo el trapecio muy contracturado, que hago?')">💪 Trapecio</div>
+    <div class="chip" onclick="askChip('Como descomprimir la columna vertebral en casa?')">🏠 Descomprimir</div>
+    <div class="chip" onclick="askChip('Me desperte con torticolis aguda, que hago?')">😫 Torticolis</div>
+    <div class="chip" onclick="askChip('Tengo lumbalgia cronica hace meses, que me recomendas?')">🌡️ Lumbalgia</div>
+    <div class="chip" onclick="askChip('Cuando es necesario operarse de la columna?')">🏥 Operar?</div>
+    <div class="chip" onclick="askChip('Dolor de cabeza frecuente por tension en el cuello')">🤕 Cefalea</div>
+    <div class="chip" onclick="askChip('Que ejercicios son seguros con hernia de disco?')">🧘 Hernia + ejercicio</div>
+    <div class="chip" onclick="askChip('Tengo escoliosis, que puedo hacer para mejorar?')">〰️ Escoliosis</div>
+    <div class="chip" onclick="askChip('Diferencia entre quiropractico y fisioterapeuta?')">🔬 Fisio vs Quiro</div>
+  </div>
+  <div class="chat-box">
+    <div class="messages" id="messages">
+      <div class="msg">
+        <div class="ava bot">🦴</div>
+        <div class="bbl bot">Hola! Soy <strong>QuiroBot Pro</strong>. Estoy disenado para ayudar a personas con dolencias de columna: hernia de disco, ciatica, cervicalgia, lumbalgia, contracturas y mas.<br><br>Contame que te duele y te oriento paso a paso. 💬</div>
+      </div>
+    </div>
+    <div class="chat-inp">
+      <input type="text" id="chatInput" placeholder="Describ&#237; tu dolor o molestia..." maxlength="500" onkeydown="if(event.key==='Enter')sendMsg()">
+      <button class="send-btn" id="sendBtn" onclick="sendMsg()">➤</button>
+    </div>
+  </div>
 </div>
+
+<!-- ═══ MI COLUMNA SVG 3D ═══ -->
+<div class="panel" id="panel-columna">
+  <div class="stitle">🦴 Mi Columna Vertebral 3D</div>
+  <p class="ssub">Toca cada vertebra para ver su nombre, funcion y las molestias que puede causar al afectarse.</p>
+
+  <!-- SELECTOR DE VISTA -->
+  <div style="display:flex;gap:8px;margin-bottom:14px;">
+    <button class="fbtn active" onclick="setVista('lateral',this)" id="btn-lateral">Vista Lateral</button>
+    <button class="fbtn" onclick="setVista('frontal',this)" id="btn-frontal">Vista Frontal</button>
+  </div>
+
+  <div class="card" style="padding:14px;overflow:hidden;">
+    <div style="display:flex;gap:10px;align-items:flex-start;">
+
+      <!-- SVG 3D COLUMNA -->
+      <div style="flex-shrink:0;position:relative;">
+        <svg id="spine3d" width="170" height="560" viewBox="0 0 170 560" style="display:block;">
+          <defs>
+            <!-- Gradientes vertebras -->
+            <linearGradient id="gAtlas" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#A8D8EA"/><stop offset="100%" stop-color="#3A7CA5"/>
+            </linearGradient>
+            <linearGradient id="gCerv" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#7ABCE8"/><stop offset="100%" stop-color="#2A6090"/>
+            </linearGradient>
+            <linearGradient id="gTor" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#7AAA8A"/><stop offset="100%" stop-color="#2D5E3A"/>
+            </linearGradient>
+            <linearGradient id="gLum" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#F5C86A"/><stop offset="100%" stop-color="#C07010"/>
+            </linearGradient>
+            <linearGradient id="gSac" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#C0A0F8"/><stop offset="100%" stop-color="#6040BB"/>
+            </linearGradient>
+            <!-- Disco sano -->
+            <linearGradient id="gDsano" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#3DBA7A" stop-opacity=".95"/>
+              <stop offset="100%" stop-color="#1A6040" stop-opacity=".95"/>
+            </linearGradient>
+            <!-- Disco riesgo -->
+            <linearGradient id="gDrisk" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#F5A030" stop-opacity=".95"/>
+              <stop offset="100%" stop-color="#A05010"/>
+            </linearGradient>
+            <!-- Disco critico -->
+            <linearGradient id="gDcrit" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#E85050" stop-opacity=".95"/>
+              <stop offset="100%" stop-color="#901010"/>
+            </linearGradient>
+            <!-- Sombra -->
+            <filter id="vshadow">
+              <feDropShadow dx="2" dy="3" stdDeviation="3" flood-color="rgba(0,0,0,.6)"/>
+            </filter>
+            <filter id="vglow">
+              <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="rgba(61,186,122,.9)"/>
+            </filter>
+          </defs>
+
+          <!-- ═══ CURVA CERVICAL LORDOSIS ═══ -->
+          <path d="M85,22 Q100,80 85,150" fill="none" stroke="rgba(92,168,224,.06)" stroke-width="22" stroke-linecap="round"/>
+          <!-- ═══ CURVA TORACICA CIFOSIS ═══ -->
+          <path d="M85,150 Q68,255 85,355" fill="none" stroke="rgba(106,154,106,.06)" stroke-width="24" stroke-linecap="round"/>
+          <!-- ═══ CURVA LUMBAR LORDOSIS ═══ -->
+          <path d="M85,355 Q100,425 85,475" fill="none" stroke="rgba(232,168,76,.06)" stroke-width="26" stroke-linecap="round"/>
+
+          <!-- MEDULA ESPINAL -->
+          <path d="M85,24 Q85,180 85,370" fill="none" stroke="rgba(224,92,92,.18)" stroke-width="4" stroke-linecap="round"/>
+
+          <!-- ═══════════════════════ -->
+          <!--   CRANEO              -->
+          <!-- ═══════════════════════ -->
+          <ellipse cx="85" cy="13" rx="24" ry="10" fill="rgba(200,215,230,.13)" stroke="rgba(200,215,230,.35)" stroke-width="1.2"/>
+          <text x="85" y="16.5" text-anchor="middle" font-size="8" fill="rgba(200,215,230,.55)" font-family="Outfit,sans-serif">Craneo</text>
+
+          <!-- ═══════════════════════ -->
+          <!--   CERVICALES C1-C7    -->
+          <!-- ═══════════════════════ -->
+
+          <!-- C1 ATLAS -->
+          <g class="vg3d" id="v3d-C1" onclick="selV3d('C1')">
+            <!-- apofisis transversas -->
+            <line x1="63" y1="30" x2="49" y2="34" stroke="#5CA8E0" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="107" y1="30" x2="121" y2="34" stroke="#5CA8E0" stroke-width="2.5" stroke-linecap="round"/>
+            <ellipse cx="47" cy="34" rx="4" ry="2.5" fill="#3A7CA5" opacity=".8"/>
+            <ellipse cx="123" cy="34" rx="4" ry="2.5" fill="#3A7CA5" opacity=".8"/>
+            <!-- cuerpo vertebral -->
+            <rect x="63" y="23" width="44" height="11" rx="4" fill="url(#gAtlas)" filter="url(#vshadow)"/>
+            <rect x="63" y="23" width="44" height="6" rx="3" fill="#B0E0F8"/>
+            <!-- agujero vertebral (anillo) -->
+            <ellipse cx="85" cy="28" rx="8" ry="4" fill="rgba(0,0,0,.3)" stroke="rgba(61,186,122,.4)" stroke-width="1"/>
+            <text x="85" y="31" text-anchor="middle" font-size="5.5" fill="white" font-weight="700" font-family="Outfit">ATLAS</text>
+            <text x="85" y="38.5" text-anchor="middle" font-size="5" fill="#8ACEF0" font-family="Outfit">C1</text>
+          </g>
+
+          <!-- C2 AXIS -->
+          <g class="vg3d" id="v3d-C2" onclick="selV3d('C2')">
+            <ellipse cx="85" cy="46" rx="14" ry="3" fill="url(#gDsano)" opacity=".9"/>
+            <line x1="65" y1="53" x2="51" y2="57" stroke="#5CA8E0" stroke-width="2" stroke-linecap="round"/>
+            <line x1="105" y1="53" x2="119" y2="57" stroke="#5CA8E0" stroke-width="2" stroke-linecap="round"/>
+            <rect x="64" y="49" width="42" height="10" rx="3" fill="url(#gCerv)" filter="url(#vshadow)"/>
+            <rect x="64" y="49" width="42" height="5.5" rx="2.5" fill="#8ACEF0"/>
+            <!-- apofisis odontoides -->
+            <rect x="82" y="42" width="6" height="8" rx="2" fill="#3A7CA5" opacity=".9"/>
+            <text x="85" y="57" text-anchor="middle" font-size="5.5" fill="white" font-weight="700" font-family="Outfit">AXIS C2</text>
+          </g>
+
+          <!-- C3 -->
+          <g class="vg3d" id="v3d-C3" onclick="selV3d('C3')">
+            <ellipse cx="85" cy="64" rx="13" ry="2.5" fill="url(#gDsano)" opacity=".9"/>
+            <line x1="66" y1="71" x2="52" y2="75" stroke="#5CA8E0" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="104" y1="71" x2="118" y2="75" stroke="#5CA8E0" stroke-width="1.8" stroke-linecap="round"/>
+            <rect x="65" y="67" width="40" height="10" rx="3" fill="url(#gCerv)" filter="url(#vshadow)"/>
+            <rect x="65" y="67" width="40" height="5.5" rx="2.5" fill="#8ACEF0"/>
+            <polygon points="89,67 97,61 97,67" fill="#2A5A80" opacity=".8"/>
+            <text x="85" y="75" text-anchor="middle" font-size="5.5" fill="white" font-weight="700" font-family="Outfit">C3</text>
+          </g>
+
+          <!-- C4 -->
+          <g class="vg3d" id="v3d-C4" onclick="selV3d('C4')">
+            <ellipse cx="85" cy="82" rx="13" ry="2.5" fill="url(#gDsano)" opacity=".9"/>
+            <line x1="66" y1="89" x2="52" y2="93" stroke="#5CA8E0" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="104" y1="89" x2="118" y2="93" stroke="#5CA8E0" stroke-width="1.8" stroke-linecap="round"/>
+            <rect x="65" y="85" width="40" height="10" rx="3" fill="url(#gCerv)" filter="url(#vshadow)"/>
+            <rect x="65" y="85" width="40" height="5.5" rx="2.5" fill="#8ACEF0"/>
+            <polygon points="89,85 97,79 97,85" fill="#2A5A80" opacity=".8"/>
+            <text x="85" y="93" text-anchor="middle" font-size="5.5" fill="white" font-weight="700" font-family="Outfit">C4</text>
+          </g>
+
+          <!-- C5 - riesgo -->
+          <g class="vg3d" id="v3d-C5" onclick="selV3d('C5')">
+            <ellipse cx="85" cy="100" rx="13" ry="2.5" fill="url(#gDrisk)" opacity=".9"/>
+            <line x1="66" y1="107" x2="52" y2="111" stroke="#5CA8E0" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="104" y1="107" x2="118" y2="111" stroke="#5CA8E0" stroke-width="1.8" stroke-linecap="round"/>
+            <rect x="65" y="103" width="40" height="10" rx="3" fill="url(#gCerv)" filter="url(#vshadow)"/>
+            <rect x="65" y="103" width="40" height="5.5" rx="2.5" fill="#8ACEF0"/>
+            <polygon points="89,103 97,97 97,103" fill="#2A5A80" opacity=".8"/>
+            <circle cx="122" cy="110" r="3.5" fill="#E8A84C" opacity=".9"/>
+            <text x="85" y="111" text-anchor="middle" font-size="5.5" fill="white" font-weight="700" font-family="Outfit">C5</text>
+          </g>
+
+          <!-- C6 - CRITICO cervical -->
+          <g class="vg3d" id="v3d-C6" onclick="selV3d('C6')">
+            <!-- Disco herniado visible -->
+            <ellipse cx="85" cy="119" rx="14" ry="3.5" fill="url(#gDcrit)" opacity=".95"/>
+            <ellipse cx="103" cy="120" rx="5" ry="2.5" fill="#FF6060" opacity=".85"/>
+            <line x1="66" y1="126" x2="52" y2="130" stroke="#5CA8E0" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="104" y1="126" x2="118" y2="130" stroke="#5CA8E0" stroke-width="1.8" stroke-linecap="round"/>
+            <rect x="64" y="122" width="42" height="10" rx="3" fill="url(#gCerv)" filter="url(#vshadow)"/>
+            <rect x="64" y="122" width="42" height="5.5" rx="2.5" fill="#8ACEF0"/>
+            <polygon points="90,122 98,116 98,122" fill="#2A5A80" opacity=".8"/>
+            <circle cx="122" cy="129" r="4.5" fill="#E05C5C" opacity=".95"/>
+            <text x="85" y="130" text-anchor="middle" font-size="5.5" fill="white" font-weight="700" font-family="Outfit">C6</text>
+          </g>
+
+          <!-- C7 -->
+          <g class="vg3d" id="v3d-C7" onclick="selV3d('C7')">
+            <ellipse cx="85" cy="138" rx="13.5" ry="2.8" fill="url(#gDsano)" opacity=".9"/>
+            <line x1="65" y1="145" x2="51" y2="149" stroke="#5CA8E0" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="105" y1="145" x2="119" y2="149" stroke="#5CA8E0" stroke-width="1.8" stroke-linecap="round"/>
+            <rect x="64" y="141" width="42" height="11" rx="3" fill="url(#gCerv)" filter="url(#vshadow)"/>
+            <rect x="64" y="141" width="42" height="6" rx="2.5" fill="#8ACEF0"/>
+            <!-- apofisis espinosa prominente -->
+            <polygon points="90,141 101,133 101,141" fill="#2A5A80" opacity=".85"/>
+            <text x="85" y="149" text-anchor="middle" font-size="5.5" fill="white" font-weight="700" font-family="Outfit">C7</text>
+          </g>
+
+          <!-- Label C -->
+          <text x="16" y="100" text-anchor="middle" font-size="9.5" fill="#5CA8E0" font-weight="700" font-family="Outfit">C</text>
+          <line x1="24" y1="25" x2="24" y2="152" stroke="#5CA8E0" stroke-width="1" stroke-dasharray="3,3" opacity=".4"/>
+
+          <!-- ═══════════════════════ -->
+          <!--   TORACICAS T1-T12    -->
+          <!-- ═══════════════════════ -->
+
+          <g class="vg3d" id="v3d-T1" onclick="selV3d('T1')">
+            <ellipse cx="82" cy="160" rx="14" ry="2.8" fill="url(#gDsano)" opacity=".85"/>
+            <line x1="62" y1="167" x2="46" y2="172" stroke="#4A8A5A" stroke-width="2" stroke-linecap="round"/>
+            <line x1="102" y1="167" x2="120" y2="172" stroke="#4A8A5A" stroke-width="2" stroke-linecap="round"/>
+            <rect x="61" y="163" width="42" height="10" rx="3" fill="url(#gTor)" filter="url(#vshadow)"/>
+            <rect x="61" y="163" width="42" height="5.5" rx="2.5" fill="#7AAA8A"/>
+            <polygon points="88,163 97,157 97,163" fill="#2A5E3A" opacity=".8"/>
+            <text x="82" y="171" text-anchor="middle" font-size="5.5" fill="white" font-weight="700" font-family="Outfit">T1</text>
+          </g>
+
+          <g class="vg3d" id="v3d-T2" onclick="selV3d('T2')">
+            <ellipse cx="80" cy="177" rx="14" ry="2.8" fill="url(#gDsano)" opacity=".85"/>
+            <line x1="60" y1="184" x2="44" y2="189" stroke="#4A8A5A" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="100" y1="184" x2="122" y2="189" stroke="#4A8A5A" stroke-width="1.8" stroke-linecap="round"/>
+            <rect x="59" y="180" width="42" height="10" rx="3" fill="url(#gTor)" filter="url(#vshadow)"/>
+            <rect x="59" y="180" width="42" height="5.5" rx="2.5" fill="#7AAA8A"/>
+            <polygon points="86,180 95,174 95,180" fill="#2A5E3A" opacity=".8"/>
+            <text x="80" y="188" text-anchor="middle" font-size="5.5" fill="white" font-weight="700" font-family="Outfit">T2</text>
+          </g>
+
+          <g class="vg3d" id="v3d-T3" onclick="selV3d('T3')">
+            <ellipse cx="78" cy="194" rx="14" ry="2.8" fill="url(#gDsano)" opacity=".85"/>
+            <line x1="58" y1="201" x2="42" y2="206" stroke="#4A8A5A" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="98" y1="201" x2="124" y2="206" stroke="#4A8A5A" stroke-width="1.8" stroke-linecap="round"/>
+            <rect x="57" y="197" width="42" height="10" rx="3" fill="url(#gTor)" filter="url(#vshadow)"/>
+            <rect x="57" y="197" width="42" height="5.5" rx="2.5" fill="#7AAA8A"/>
+            <polygon points="84,197 93,191 93,197" fill="#2A5E3A" opacity=".8"/>
+            <text x="78" y="205" text-anchor="middle" font-size="5.5" fill="white" font-weight="700" font-family="Outfit">T3</text>
+          </g>
+
+          <g class="vg3d" id="v3d-T4" onclick="selV3d('T4')">
+            <ellipse cx="77" cy="211" rx="14" ry="2.8" fill="url(#gDsano)" opacity=".85"/>
+            <line x1="57" y1="218" x2="41" y2="223" stroke="#4A8A5A" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="97" y1="218" x2="125" y2="223" stroke="#4A8A5A" stroke-width="1.8" stroke-linecap="round"/>
+            <rect x="56" y="214" width="42" height="10" rx="3" fill="url(#gTor)" filter="url(#vshadow)"/>
+            <rect x="56" y="214" width="42" height="5.5" rx="2.5" fill="#7AAA8A"/>
+            <polygon points="83,214 92,208 92,214" fill="#2A5E3A" opacity=".8"/>
+            <text x="77" y="222" text-anchor="middle" font-size="5.5" fill="white" font-weight="700" font-family="Outfit">T4</text>
+          </g>
+
+          <g class="vg3d" id="v3d-T5" onclick="selV3d('T5')">
+            <ellipse cx="76" cy="228" rx="14" ry="2.8" fill="url(#gDsano)" opacity=".85"/>
+            <line x1="56" y1="235" x2="40" y2="240" stroke="#4A8A5A" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="96" y1="235" x2="126" y2="240" stroke="#4A8A5A" stroke-width="1.8" stroke-linecap="round"/>
+            <rect x="55" y="231" width="42" height="10" rx="3" fill="url(#gTor)" filter="url(#vshadow)"/>
+            <rect x="55" y="231" width="42" height="5.5" rx="2.5" fill="#7AAA8A"/>
+            <polygon points="82,231 91,225 91,231" fill="#2A5E3A" opacity=".8"/>
+            <text x="76" y="239" text-anchor="middle" font-size="5.5" fill="white" font-weight="700" font-family="Outfit">T5</text>
+          </g>
+
+          <g class="vg3d" id="v3d-T6" onclick="selV3d('T6')">
+            <ellipse cx="75" cy="245" rx="14" ry="2.8" fill="url(#gDsano)" opacity=".85"/>
+            <line x1="55" y1="252" x2="39" y2="257" stroke="#4A8A5A" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="95" y1="252" x2="127" y2="257" stroke="#4A8A5A" stroke-width="1.8" stroke-linecap="round"/>
+            <rect x="54" y="248" width="42" height="10" rx="3" fill="url(#gTor)" filter="url(#vshadow)"/>
+            <rect x="54" y="248" width="42" height="5.5" rx="2.5" fill="#7AAA8A"/>
+            <polygon points="81,248 90,242 90,248" fill="#2A5E3A" opacity=".8"/>
+            <text x="75" y="256" text-anchor="middle" font-size="5.5" fill="white" font-weight="700" font-family="Outfit">T6</text>
+          </g>
+
+          <g class="vg3d" id="v3d-T7" onclick="selV3d('T7')">
+            <ellipse cx="75" cy="262" rx="14" ry="2.8" fill="url(#gDsano)" opacity=".85"/>
+            <line x1="55" y1="269" x2="39" y2="274" stroke="#4A8A5A" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="95" y1="269" x2="127" y2="274" stroke="#4A8A5A" stroke-width="1.8" stroke-linecap="round"/>
+            <rect x="54" y="265" width="42" height="10" rx="3" fill="url(#gTor)" filter="url(#vshadow)"/>
+            <rect x="54" y="265" width="42" height="5.5" rx="2.5" fill="#7AAA8A"/>
+            <polygon points="81,265 90,259 90,265" fill="#2A5E3A" opacity=".8"/>
+            <text x="75" y="273" text-anchor="middle" font-size="5.5" fill="white" font-weight="700" font-family="Outfit">T7</text>
+          </g>
+
+          <g class="vg3d" id="v3d-T8" onclick="selV3d('T8')">
+            <ellipse cx="75" cy="279" rx="14.5" ry="2.8" fill="url(#gDsano)" opacity=".85"/>
+            <line x1="55" y1="286" x2="39" y2="291" stroke="#4A8A5A" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="95" y1="286" x2="127" y2="291" stroke="#4A8A5A" stroke-width="1.8" stroke-linecap="round"/>
+            <rect x="54" y="282" width="43" height="10" rx="3" fill="url(#gTor)" filter="url(#vshadow)"/>
+            <rect x="54" y="282" width="43" height="5.5" rx="2.5" fill="#7AAA8A"/>
+            <polygon points="82,282 91,276 91,282" fill="#2A5E3A" opacity=".8"/>
+            <text x="75" y="290" text-anchor="middle" font-size="5.5" fill="white" font-weight="700" font-family="Outfit">T8</text>
+          </g>
+
+          <g class="vg3d" id="v3d-T9" onclick="selV3d('T9')">
+            <ellipse cx="76" cy="296" rx="15" ry="2.8" fill="url(#gDsano)" opacity=".85"/>
+            <line x1="56" y1="303" x2="40" y2="308" stroke="#4A8A5A" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="96" y1="303" x2="126" y2="308" stroke="#4A8A5A" stroke-width="1.8" stroke-linecap="round"/>
+            <rect x="55" y="299" width="43" height="10" rx="3" fill="url(#gTor)" filter="url(#vshadow)"/>
+            <rect x="55" y="299" width="43" height="5.5" rx="2.5" fill="#7AAA8A"/>
+            <polygon points="83,299 92,293 92,299" fill="#2A5E3A" opacity=".8"/>
+            <text x="76" y="307" text-anchor="middle" font-size="5.5" fill="white" font-weight="700" font-family="Outfit">T9</text>
+          </g>
+
+          <g class="vg3d" id="v3d-T10" onclick="selV3d('T10')">
+            <ellipse cx="77" cy="313" rx="15.5" ry="2.8" fill="url(#gDsano)" opacity=".85"/>
+            <line x1="57" y1="320" x2="41" y2="325" stroke="#4A8A5A" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="97" y1="320" x2="125" y2="325" stroke="#4A8A5A" stroke-width="1.8" stroke-linecap="round"/>
+            <rect x="56" y="316" width="43" height="10" rx="3" fill="url(#gTor)" filter="url(#vshadow)"/>
+            <rect x="56" y="316" width="43" height="5.5" rx="2.5" fill="#7AAA8A"/>
+            <polygon points="84,316 93,310 93,316" fill="#2A5E3A" opacity=".8"/>
+            <text x="77" y="324" text-anchor="middle" font-size="5" fill="white" font-weight="700" font-family="Outfit">T10</text>
+          </g>
+
+          <g class="vg3d" id="v3d-T11" onclick="selV3d('T11')">
+            <ellipse cx="79" cy="330" rx="16" ry="2.8" fill="url(#gDsano)" opacity=".85"/>
+            <line x1="59" y1="337" x2="43" y2="342" stroke="#4A8A5A" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="99" y1="337" x2="123" y2="342" stroke="#4A8A5A" stroke-width="1.8" stroke-linecap="round"/>
+            <rect x="58" y="333" width="44" height="10" rx="3" fill="url(#gTor)" filter="url(#vshadow)"/>
+            <rect x="58" y="333" width="44" height="5.5" rx="2.5" fill="#7AAA8A"/>
+            <polygon points="86,333 95,327 95,333" fill="#2A5E3A" opacity=".8"/>
+            <text x="79" y="341" text-anchor="middle" font-size="5" fill="white" font-weight="700" font-family="Outfit">T11</text>
+          </g>
+
+          <g class="vg3d" id="v3d-T12" onclick="selV3d('T12')">
+            <ellipse cx="81" cy="347" rx="16.5" ry="3" fill="url(#gDsano)" opacity=".85"/>
+            <line x1="61" y1="354" x2="45" y2="359" stroke="#4A8A5A" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="101" y1="354" x2="121" y2="359" stroke="#4A8A5A" stroke-width="1.8" stroke-linecap="round"/>
+            <rect x="60" y="350" width="44" height="11" rx="3" fill="url(#gTor)" filter="url(#vshadow)"/>
+            <rect x="60" y="350" width="44" height="6" rx="2.5" fill="#7AAA8A"/>
+            <polygon points="88,350 97,344 97,350" fill="#2A5E3A" opacity=".8"/>
+            <text x="81" y="359" text-anchor="middle" font-size="5" fill="white" font-weight="700" font-family="Outfit">T12</text>
+          </g>
+
+          <!-- Label T -->
+          <text x="15" y="265" text-anchor="middle" font-size="9.5" fill="#6B9E7A" font-weight="700" font-family="Outfit">T</text>
+          <line x1="23" y1="155" x2="23" y2="362" stroke="#6B9E7A" stroke-width="1" stroke-dasharray="3,3" opacity=".4"/>
+
+          <!-- ═══════════════════════ -->
+          <!--   LUMBARES L1-L5      -->
+          <!-- ═══════════════════════ -->
+
+          <!-- L1 -->
+          <g class="vg3d" id="v3d-L1" onclick="selV3d('L1')">
+            <ellipse cx="83" cy="369" rx="18" ry="3.2" fill="url(#gDsano)" opacity=".9"/>
+            <line x1="62" y1="377" x2="45" y2="383" stroke="#C08030" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="104" y1="377" x2="121" y2="383" stroke="#C08030" stroke-width="2.5" stroke-linecap="round"/>
+            <rect x="61" y="372" width="44" height="13" rx="4" fill="url(#gLum)" filter="url(#vshadow)"/>
+            <rect x="61" y="372" width="44" height="7" rx="3" fill="#F8D080"/>
+            <polygon points="89,372 100,365 100,372" fill="#A06010" opacity=".85"/>
+            <text x="83" y="382" text-anchor="middle" font-size="6.5" fill="white" font-weight="700" font-family="Outfit">L1</text>
+          </g>
+
+          <!-- L2 -->
+          <g class="vg3d" id="v3d-L2" onclick="selV3d('L2')">
+            <ellipse cx="83" cy="390" rx="19" ry="3.5" fill="url(#gDsano)" opacity=".9"/>
+            <line x1="61" y1="398" x2="44" y2="404" stroke="#C08030" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="105" y1="398" x2="122" y2="404" stroke="#C08030" stroke-width="2.5" stroke-linecap="round"/>
+            <rect x="60" y="393" width="46" height="13" rx="4" fill="url(#gLum)" filter="url(#vshadow)"/>
+            <rect x="60" y="393" width="46" height="7" rx="3" fill="#F8D080"/>
+            <polygon points="90,393 101,386 101,393" fill="#A06010" opacity=".85"/>
+            <text x="83" y="403" text-anchor="middle" font-size="6.5" fill="white" font-weight="700" font-family="Outfit">L2</text>
+          </g>
+
+          <!-- L3 -->
+          <g class="vg3d" id="v3d-L3" onclick="selV3d('L3')">
+            <ellipse cx="83" cy="411" rx="20" ry="3.5" fill="url(#gDsano)" opacity=".9"/>
+            <line x1="60" y1="419" x2="43" y2="425" stroke="#C08030" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="106" y1="419" x2="123" y2="425" stroke="#C08030" stroke-width="2.5" stroke-linecap="round"/>
+            <rect x="59" y="414" width="48" height="13" rx="4" fill="url(#gLum)" filter="url(#vshadow)"/>
+            <rect x="59" y="414" width="48" height="7" rx="3" fill="#F8D080"/>
+            <polygon points="91,414 102,407 102,414" fill="#A06010" opacity=".85"/>
+            <text x="83" y="424" text-anchor="middle" font-size="6.5" fill="white" font-weight="700" font-family="Outfit">L3</text>
+          </g>
+
+          <!-- L4 - riesgo frecuente con disco abultado -->
+          <g class="vg3d" id="v3d-L4" onclick="selV3d('L4')">
+            <!-- Disco L3-L4 con riesgo -->
+            <ellipse cx="83" cy="432" rx="22" ry="4" fill="url(#gDrisk)" opacity=".95"/>
+            <line x1="59" y1="441" x2="42" y2="447" stroke="#C08030" stroke-width="3" stroke-linecap="round"/>
+            <line x1="107" y1="441" x2="124" y2="447" stroke="#C08030" stroke-width="3" stroke-linecap="round"/>
+            <rect x="58" y="435" width="50" height="14" rx="4" fill="url(#gLum)" filter="url(#vshadow)"/>
+            <rect x="58" y="435" width="50" height="7.5" rx="3" fill="#F8D080"/>
+            <polygon points="92,435 104,428 104,435" fill="#A06010" opacity=".85"/>
+            <circle cx="126" cy="445" r="4.5" fill="#E8A84C" opacity=".95"/>
+            <text x="83" y="446" text-anchor="middle" font-size="7" fill="white" font-weight="700" font-family="Outfit">L4</text>
+          </g>
+
+          <!-- L5 - MAS AFECTADO con hernia visible -->
+          <g class="vg3d" id="v3d-L5" onclick="selV3d('L5')">
+            <!-- Disco L4-L5 herniado -->
+            <ellipse cx="83" cy="455" rx="24" ry="4.5" fill="url(#gDcrit)" opacity=".98"/>
+            <!-- Hernia bulge lateral -->
+            <ellipse cx="110" cy="457" rx="8" ry="4" fill="#FF5050" opacity=".9"/>
+            <ellipse cx="56" cy="457" rx="5" ry="3" fill="#FF7070" opacity=".5"/>
+            <line x1="58" y1="464" x2="41" y2="470" stroke="#C08030" stroke-width="3" stroke-linecap="round"/>
+            <line x1="108" y1="464" x2="125" y2="470" stroke="#C08030" stroke-width="3" stroke-linecap="round"/>
+            <rect x="57" y="458" width="52" height="15" rx="4" fill="url(#gLum)" filter="url(#vshadow)"/>
+            <rect x="57" y="458" width="52" height="8" rx="3" fill="#F8D080"/>
+            <polygon points="93,458 106,450 106,458" fill="#A06010" opacity=".85"/>
+            <!-- Indicador critico -->
+            <circle cx="126" cy="467" r="5.5" fill="#E05C5C" opacity="1"/>
+            <text x="83" y="470" text-anchor="middle" font-size="7" fill="white" font-weight="700" font-family="Outfit">L5</text>
+          </g>
+
+          <!-- Label L -->
+          <text x="14" y="435" text-anchor="middle" font-size="9.5" fill="#E8A84C" font-weight="700" font-family="Outfit">L</text>
+          <line x1="22" y1="368" x2="22" y2="477" stroke="#E8A84C" stroke-width="1" stroke-dasharray="3,3" opacity=".4"/>
+
+          <!-- ═══════════════════════ -->
+          <!--   SACRO + COCCIX      -->
+          <!-- ═══════════════════════ -->
+
+          <g class="vg3d" id="v3d-sacro" onclick="selV3d('sacro')">
+            <!-- Disco L5-S1 critico -->
+            <ellipse cx="83" cy="479" rx="25" ry="4.5" fill="url(#gDcrit)" opacity=".98"/>
+            <ellipse cx="112" cy="481" rx="8.5" ry="4" fill="#FF4040" opacity=".95"/>
+            <!-- Sacro trapezoidal -->
+            <path d="M58,487 L108,487 L103,515 L63,515 Z" fill="url(#gSac)" filter="url(#vshadow)"/>
+            <path d="M58,487 L108,487 L105,495 L60,495 Z" fill="#D0B0FF"/>
+            <!-- Agujeros sacros -->
+            <circle cx="74" cy="502" r="3" fill="rgba(0,0,0,.5)"/>
+            <circle cx="92" cy="502" r="3" fill="rgba(0,0,0,.5)"/>
+            <circle cx="74" cy="511" r="2.2" fill="rgba(0,0,0,.45)"/>
+            <circle cx="92" cy="511" r="2.2" fill="rgba(0,0,0,.45)"/>
+            <!-- Articulaciones sacroiliacas -->
+            <line x1="58" y1="491" x2="42" y2="496" stroke="#9B7FE8" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="108" y1="491" x2="124" y2="496" stroke="#9B7FE8" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="38" cy="496" r="6" fill="#9B7FE8" opacity=".75"/>
+            <circle cx="128" cy="496" r="6" fill="#9B7FE8" opacity=".75"/>
+            <!-- Punto critico L5-S1 -->
+            <circle cx="127" cy="481" r="5.5" fill="#E05C5C" opacity="1"/>
+            <text x="83" y="504" text-anchor="middle" font-size="6.5" fill="white" font-weight="600" font-family="Outfit">SACRO</text>
+            <text x="83" y="513" text-anchor="middle" font-size="5.5" fill="#C0A0F0" font-family="Outfit">S1-S5</text>
+          </g>
+
+          <!-- Coccix -->
+          <g class="vg3d" id="v3d-coccix" onclick="selV3d('coccix')">
+            <path d="M66,516 L100,516 L94,530 L72,530 Z" fill="#8060C0" opacity=".7"/>
+            <text x="83" y="526" text-anchor="middle" font-size="6" fill="white" font-family="Outfit">COCCIX</text>
+          </g>
+
+          <!-- Label S -->
+          <text x="14" y="504" text-anchor="middle" font-size="9.5" fill="#9B7FE8" font-weight="700" font-family="Outfit">S</text>
+
+          <!-- Nervio ciatico representacion -->
+          <path d="M41,470 Q32,490 37,535" fill="none" stroke="#E05C5C" stroke-width="2" stroke-dasharray="4,4" opacity=".5"/>
+          <text x="20" y="535" text-anchor="middle" font-size="5" fill="#E05C5C" font-family="Outfit">N.</text>
+          <text x="20" y="542" text-anchor="middle" font-size="5" fill="#E05C5C" font-family="Outfit">Ciat.</text>
+
+          <!-- LEYENDA DE DISCOS -->
+          <rect x="130" y="160" width="9" height="5" rx="1.5" fill="url(#gDsano)"/>
+          <text x="141" y="166" font-size="5.5" fill="#3DBA7A" font-family="Outfit">Sano</text>
+          <rect x="130" y="170" width="9" height="5" rx="1.5" fill="url(#gDrisk)"/>
+          <text x="141" y="176" font-size="5.5" fill="#E8A84C" font-family="Outfit">Riesgo</text>
+          <rect x="130" y="180" width="9" height="5" rx="1.5" fill="url(#gDcrit)"/>
+          <text x="141" y="186" font-size="5.5" fill="#E05C5C" font-family="Outfit">Critico</text>
+          <circle cx="134" cy="197" r="3.5" fill="#9B7FE8"/>
+          <text x="141" y="200" font-size="5.5" fill="#9B7FE8" font-family="Outfit">S.Ilia</text>
+
+        </svg>
+      </div>
+
+      <!-- PANEL DE INFORMACION -->
+      <div style="flex:1;min-width:0;">
+        <!-- Instruccion inicial -->
+        <div id="spine3d-default" style="text-align:center;padding:20px 8px;">
+          <div style="font-size:36px;margin-bottom:10px;">☝️</div>
+          <p style="font-size:.78rem;color:var(--gr);font-weight:600;margin-bottom:6px;">Toca una vertebra</p>
+          <p style="font-size:.72rem;color:var(--mu);line-height:1.5;">Selecciona cualquier vertebra del diagrama para ver su nombre, funcion y las molestias que puede provocar.</p>
+          <div style="margin-top:14px;background:var(--card2);border-radius:10px;padding:10px;">
+            <p style="font-size:.7rem;color:var(--mu);margin-bottom:6px;font-weight:500;">Leyenda de discos:</p>
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              <div style="display:flex;align-items:center;gap:6px;"><div style="width:14px;height:6px;border-radius:3px;background:var(--gr)"></div><span style="font-size:.68rem;color:var(--mu);">Disco sano</span></div>
+              <div style="display:flex;align-items:center;gap:6px;"><div style="width:14px;height:6px;border-radius:3px;background:var(--am)"></div><span style="font-size:.68rem;color:var(--mu);">Zona de riesgo</span></div>
+              <div style="display:flex;align-items:center;gap:6px;"><div style="width:14px;height:6px;border-radius:3px;background:var(--rd)"></div><span style="font-size:.68rem;color:var(--mu);">Zona critica (hernia frecuente)</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info vertebra seleccionada -->
+        <div id="spine3d-info" style="display:none;animation:fadeUp .25s ease;">
+          <div id="v3d-badge" style="display:inline-block;font-size:.65rem;padding:3px 10px;border-radius:12px;font-weight:700;margin-bottom:8px;"></div>
+          <h3 id="v3d-title" style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--tx);margin-bottom:4px;"></h3>
+          <p id="v3d-nombre" style="font-size:.7rem;color:var(--mu);margin-bottom:8px;"></p>
+          <p id="v3d-desc" style="font-size:.75rem;color:var(--mu);line-height:1.55;margin-bottom:10px;"></p>
+
+          <!-- Molestias -->
+          <div style="background:rgba(224,92,92,.06);border:1px solid rgba(224,92,92,.2);border-radius:10px;padding:10px;margin-bottom:8px;">
+            <p style="font-size:.72rem;font-weight:600;color:#E8A0A0;margin-bottom:6px;">⚡ Molestias frecuentes:</p>
+            <ul id="v3d-molestias" style="list-style:none;padding:0;"></ul>
+          </div>
+
+          <!-- Nervio -->
+          <div id="v3d-nervio-wrap" style="background:rgba(92,168,224,.06);border:1px solid rgba(92,168,224,.2);border-radius:10px;padding:10px;margin-bottom:8px;">
+            <p style="font-size:.72rem;font-weight:600;color:var(--bl);margin-bottom:4px;">⚡ Nervio / inervacion:</p>
+            <p id="v3d-nervio" style="font-size:.72rem;color:var(--mu);line-height:1.5;"></p>
+          </div>
+
+          <!-- Tip -->
+          <div style="background:rgba(61,186,122,.06);border-left:3px solid var(--gr);padding:8px 10px;border-radius:0 8px 8px 0;">
+            <p id="v3d-tip" style="font-size:.72rem;color:var(--mu);line-height:1.5;"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box" style="margin-top:12px;"><span>💡</span><span><strong>Dato clave:</strong> Estar sentado aumenta la presion en el disco L4-L5 un 140% vs estar de pie. Por eso las personas con trabajo de escritorio sufren mas hernias en esa zona.</span></div>
+</div>
+
+<div class="panel" id="panel-causas">
+  <div class="stitle">⚠️ Causa &amp; Efecto</div>
+  <p class="ssub">Entende por que te duele. Conocer la causa es el primer paso para solucionarlo.</p>
+
+  <div class="ce-card">
+    <div class="ce-hdr" onclick="togCE(this)"><div class="ce-ico" style="background:rgba(232,168,76,.12)">💺</div><div class="ce-meta"><h3>Sedentarismo y trabajo sentado</h3><p>La causa #1 de dolencia vertebral en el mundo moderno</p></div></div>
+    <div class="ce-body">
+      <div class="ce-row">
+        <div class="ce-col causa"><h4>📌 Causas</h4><ul><li>Sentado mas de 6h/dia</li><li>Pantalla mas baja que los ojos</li><li>Sin soporte lumbar</li><li>Sin pausas activas</li><li>Usar celular sentado</li></ul></div>
+        <div class="ce-col efecto"><h4>⚡ Efectos</h4><ul><li>Lumbalgia cronica</li><li>Hernia L4-L5 / L5-S1</li><li>Contractura trapecios</li><li>Cervicalgia cronica</li><li>Debilidad del core</li></ul></div>
+      </div>
+      <div class="bw"><div class="bw-t">Riesgo segun horas sentado por dia:</div>
+        <div class="br-row"><span>1-2 horas</span><div class="btrack"><div class="bfill bg2" style="width:25%"></div></div></div>
+        <div class="br-row"><span>3-5 horas</span><div class="btrack"><div class="bfill ba2" style="width:55%"></div></div></div>
+        <div class="br-row"><span>6-8 horas</span><div class="btrack"><div class="bfill br2" style="width:82%"></div></div></div>
+        <div class="br-row"><span>+8 horas</span><div class="btrack"><div class="bfill br2" style="width:99%"></div></div></div>
+      </div>
+      <div class="ce-tip">✅ <strong>Solucion:</strong> Pararse 2-3 min cada 30 min reduce la presion discal un 40%. Programate una alarma en el celular.</div>
+    </div>
+  </div>
+
+  <div class="ce-card">
+    <div class="ce-hdr" onclick="togCE(this)"><div class="ce-ico" style="background:rgba(224,92,92,.12)">📱</div><div class="ce-meta"><h3>"Text Neck" — el cuello del celular</h3><p>Epidemia moderna — afecta al 79% de adultos</p></div></div>
+    <div class="ce-body">
+      <div class="ce-row">
+        <div class="ce-col causa"><h4>📌 Causas</h4><ul><li>Mirar el celular hacia abajo</li><li>Usarlo acostado</li><li>Mas de 4h en pantallas</li><li>Sin descansos visuales</li><li>Cabeza inclinada al trabajar</li></ul></div>
+        <div class="ce-col efecto"><h4>⚡ Efectos</h4><ul><li>Cervicalgia severa</li><li>Hernia cervical C5-C6</li><li>Cefalea tensional diaria</li><li>Dolor de hombros</li><li>Mareos y vertigo</li></ul></div>
+      </div>
+      <div class="bw"><div class="bw-t">Peso que soporta el cuello segun el angulo:</div>
+        <div class="br-row"><span>0° recto</span><div class="btrack"><div class="bfill bg2" style="width:14%"></div></div><span style="color:#3DBA7A">7 kg</span></div>
+        <div class="br-row"><span>15° leve</span><div class="btrack"><div class="bfill ba2" style="width:24%"></div></div><span style="color:#E8A84C">12 kg</span></div>
+        <div class="br-row"><span>30° celular</span><div class="btrack"><div class="bfill ba2" style="width:36%"></div></div><span style="color:#E8A84C">18 kg</span></div>
+        <div class="br-row"><span>45° mirando</span><div class="btrack"><div class="bfill br2" style="width:44%"></div></div><span style="color:#E05C5C">22 kg</span></div>
+        <div class="br-row"><span>60° abajo</span><div class="btrack"><div class="bfill br2" style="width:55%"></div></div><span style="color:#E05C5C">27 kg</span></div>
+      </div>
+      <div class="ce-tip">✅ <strong>Solucion:</strong> Lleva el celular a la altura de los ojos. Regla 20-20-20: cada 20 min, 20 seg mirando a 6 metros de distancia.</div>
+    </div>
+  </div>
+
+  <div class="ce-card">
+    <div class="ce-hdr" onclick="togCE(this)"><div class="ce-ico" style="background:rgba(61,186,122,.12)">💧</div><div class="ce-meta"><h3>Deshidratacion de los discos</h3><p>Causa silenciosa del 60% de las hernias discales</p></div></div>
+    <div class="ce-body">
+      <div class="ce-row">
+        <div class="ce-col causa"><h4>📌 Causas</h4><ul><li>Menos de 1.5L de agua/dia</li><li>Exceso de cafe y alcohol</li><li>Falta de movimiento</li><li>Tabaquismo activo</li><li>Envejecimiento natural</li></ul></div>
+        <div class="ce-col efecto"><h4>⚡ Efectos</h4><ul><li>Disco pierde elasticidad</li><li>Mayor riesgo de hernia</li><li>Rigidez matutina severa</li><li>Perdida de altura discal</li><li>Dolor al levantarse</li></ul></div>
+      </div>
+      <div class="bw"><div class="bw-t">Nutricion del disco segun actividad (los discos no tienen vasos sanguineos):</div>
+        <div class="br-row"><span>Caminando</span><div class="btrack"><div class="bfill bg2" style="width:85%"></div></div><span style="color:#3DBA7A">Optimo</span></div>
+        <div class="br-row"><span>De pie</span><div class="btrack"><div class="bfill ba2" style="width:45%"></div></div><span style="color:#E8A84C">Regular</span></div>
+        <div class="br-row"><span>Sentado</span><div class="btrack"><div class="bfill br2" style="width:12%"></div></div><span style="color:#E05C5C">Muy poco</span></div>
+      </div>
+      <div class="ce-tip">✅ <strong>Solucion:</strong> 2+ litros de agua al dia + caminar 30 min = discos hidratados y nutridos correctamente.</div>
+    </div>
+  </div>
+
+  <div class="ce-card">
+    <div class="ce-hdr" onclick="togCE(this)"><div class="ce-ico" style="background:rgba(155,127,232,.12)">😰</div><div class="ce-meta"><h3>Estres emocional y tension muscular</h3><p>El 70% del dolor cronico de espalda tiene componente emocional</p></div></div>
+    <div class="ce-body">
+      <div class="ce-row">
+        <div class="ce-col causa"><h4>📌 Causas</h4><ul><li>Estres laboral cronico</li><li>Ansiedad y tension nerviosa</li><li>Mala calidad del sueno</li><li>Conflictos emocionales</li><li>Fatiga cronica</li></ul></div>
+        <div class="ce-col efecto"><h4>⚡ Efectos</h4><ul><li>Contractura trapecio cronica</li><li>Cefalea tensional diaria</li><li>Lumbalgia sin causa mecanica</li><li>Dolor de cuello y mandibula</li><li>Bruxismo + tension cervical</li></ul></div>
+      </div>
+      <div class="ce-tip">✅ <strong>Solucion:</strong> Respiracion diafragmatica, estiramientos nocturnos y buena higiene del sueno reducen hasta el 40% de la tension muscular cronica.</div>
+    </div>
+  </div>
+
+  <div class="ce-card">
+    <div class="ce-hdr" onclick="togCE(this)"><div class="ce-ico" style="background:rgba(232,168,76,.12)">🏋️</div><div class="ce-meta"><h3>Levantar peso incorrectamente</h3><p>Principal causa de hernias agudas en adultos activos</p></div></div>
+    <div class="ce-body">
+      <div class="ce-row">
+        <div class="ce-col causa"><h4>📌 Causas</h4><ul><li>Doblar la columna al levantar</li><li>Girar el tronco con carga</li><li>Brazos extendidos con peso</li><li>Sin calentamiento previo</li><li>Cargas repetitivas pesadas</li></ul></div>
+        <div class="ce-col efecto"><h4>⚡ Efectos</h4><ul><li>Hernia aguda L4-L5</li><li>Contractura lumbar severa</li><li>Esguince de ligamentos</li><li>Fractura por compresion</li><li>Ciatica de inicio subito</li></ul></div>
+      </div>
+      <div class="bw"><div class="bw-t">Presion en el disco L3-L4 segun posicion:</div>
+        <div class="br-row"><span>Acostado</span><div class="btrack"><div class="bfill bg2" style="width:25%"></div></div><span style="color:#3DBA7A">25 kg</span></div>
+        <div class="br-row"><span>De pie</span><div class="btrack"><div class="bfill bg2" style="width:70%"></div></div><span style="color:#3DBA7A">100 kg</span></div>
+        <div class="br-row"><span>Sentado</span><div class="btrack"><div class="bfill ba2" style="width:85%"></div></div><span style="color:#E8A84C">140 kg</span></div>
+        <div class="br-row"><span>Flexion+carga</span><div class="btrack"><div class="bfill br2" style="width:100%"></div></div><span style="color:#E05C5C">200+ kg</span></div>
+      </div>
+      <div class="ce-tip">✅ <strong>Solucion:</strong> Doblar rodillas, espalda recta, objeto pegado al cuerpo, contraer el core ANTES de levantar.</div>
+    </div>
+  </div>
+
+  <div class="ce-card">
+    <div class="ce-hdr" onclick="togCE(this)"><div class="ce-ico" style="background:rgba(224,92,92,.12)">😴</div><div class="ce-meta"><h3>Mala posicion al dormir</h3><p>8 horas en mala postura = dano acumulado diario</p></div></div>
+    <div class="ce-body">
+      <div class="ce-row">
+        <div class="ce-col causa"><h4>📌 Causas</h4><ul><li>Dormir boca abajo</li><li>Almohada muy alta o baja</li><li>Colchon muy blando</li><li>Sin almohada entre rodillas</li><li>Posicion fetal muy cerrada</li></ul></div>
+        <div class="ce-col efecto"><h4>⚡ Efectos</h4><ul><li>Torticolis recurrente</li><li>Lumbalgia matutina</li><li>Agravamiento de hernia</li><li>Hormigueo en brazos</li><li>Dolor de mandibula</li></ul></div>
+      </div>
+      <div class="ce-tip">✅ <strong>Solucion:</strong> Dormir de lado con almohada entre rodillas, o boca arriba con almohada bajo las rodillas. Colchon firme a semifirme.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══ EJERCICIOS ═══ -->
+<div class="panel" id="panel-ejercicios">
+  <div class="stitle">🧘 Ejercicios &amp; Estiramientos</div>
+  <p class="ssub">Rutinas especificas por zona. Siempre suave, sin dolor. Detente si algo molesta mucho.</p>
+  <div class="filter-row">
+    <button class="fbtn active" onclick="filtEx('todos',this)">Todos</button>
+    <button class="fbtn" onclick="filtEx('lumbar',this)">Lumbar</button>
+    <button class="fbtn" onclick="filtEx('cervical',this)">Cervical</button>
+    <button class="fbtn" onclick="filtEx('ciatica',this)">Ciatica</button>
+    <button class="fbtn" onclick="filtEx('trapecio',this)">Trapecio</button>
+    <button class="fbtn" onclick="filtEx('hernia',this)">Hernia</button>
+    <button class="fbtn" onclick="filtEx('core',this)">Core</button>
+    <button class="fbtn" onclick="filtEx('movilidad',this)">Movilidad</button>
+  </div>
+  <div id="exGrid">
+
+    <div class="ex-card" data-cat="lumbar movilidad" onclick="togEx(this)">
+      <div class="ex-hdr"><div class="ex-ico" style="background:rgba(61,186,122,.1)">🐱</div><div class="ex-meta"><h3>Gato-Vaca (Cat-Cow)</h3><span>2 min · Lumbar y columna general</span></div><span class="bdg bv">Facil</span><span class="ex-chev">▼</span></div>
+      <div class="ex-body"><ol class="ex-steps"><li>Cuatro apoyos: manos bajo hombros, rodillas bajo caderas.</li><li>GATO: exhala arqueando la columna hacia arriba, menton al pecho.</li><li>VACA: inhala dejando caer el vientre, coxis y cabeza arriba.</li><li>Fluido con la respiracion. 10-15 reps x 3 series.</li></ol><div class="ex-tip">💡 Ideal al despertar antes de levantarte. El movimiento lento es mas terapeutico que el rapido.</div><div class="ex-timer">⏱ 30 seg fluido · 3 series · manana y noche</div></div>
+    </div>
+
+    <div class="ex-card" data-cat="lumbar hernia" onclick="togEx(this)">
+      <div class="ex-hdr"><div class="ex-ico" style="background:rgba(92,168,224,.1)">🪸</div><div class="ex-meta"><h3>Rodillas al pecho</h3><span>3 min · Descompresion L4-L5</span></div><span class="bdg bv">Facil</span><span class="ex-chev">▼</span></div>
+      <div class="ex-body"><ol class="ex-steps"><li>Boca arriba en superficie firme.</li><li>Lleva ambas rodillas al pecho abrazandolas con las manos.</li><li>Mecete de lado a lado suavemente 20 veces.</li><li>Mantene 30-60 seg. Luego una rodilla a la vez.</li></ol><div class="ex-tip">💡 Hacelo antes de levantarte de la cama. Alivia presion en L4-L5 y L5-S1 inmediatamente.</div><div class="ex-timer">⏱ 30-60 seg x 3 reps · al despertar</div></div>
+    </div>
+
+    <div class="ex-card" data-cat="lumbar hernia" onclick="togEx(this)">
+      <div class="ex-hdr"><div class="ex-ico" style="background:rgba(232,168,76,.1)">🧱</div><div class="ex-meta"><h3>Extension McKenzie (Cobra)</h3><span>2 min · Hernia lumbar posterior</span></div><span class="bdg bam">Intermedio</span><span class="ex-chev">▼</span></div>
+      <div class="ex-body"><ol class="ex-steps"><li>Boca abajo, manos planas bajo los hombros.</li><li>Presiona con las palmas y levanta el torso. Pelvis en suelo siempre.</li><li>Extiende hasta donde el dolor lo permita. Nunca forzar.</li><li>5-10 seg. Vuelve lentamente. 10 reps.</li></ol><div class="ex-tip">💡 Si el dolor irradia MAS a la pierna durante el ejercicio, detente y consulta. Mejor ejercicio para hernias posteriores.</div><div class="ex-timer">⏱ 5-10 seg x 10 reps · 3 veces al dia</div></div>
+    </div>
+
+    <div class="ex-card" data-cat="lumbar movilidad" onclick="togEx(this)">
+      <div class="ex-hdr"><div class="ex-ico" style="background:rgba(155,127,232,.1)">🌀</div><div class="ex-meta"><h3>Rotacion lumbar en suelo</h3><span>4 min · Movilidad lumbar</span></div><span class="bdg bv">Facil</span><span class="ex-chev">▼</span></div>
+      <div class="ex-body"><ol class="ex-steps"><li>Boca arriba, rodillas dobladas juntas, brazos en cruz.</li><li>Deja caer ambas rodillas hacia la derecha hasta donde sea comodo.</li><li>Mantene 20-30 seg. Respira profundo.</li><li>Vuelve al centro y repite al lado izquierdo. 5 reps por lado.</li></ol><div class="ex-tip">💡 Libera la tension rotatoria acumulada. Excelente antes de dormir.</div><div class="ex-timer">⏱ 20-30 seg x 5 reps c/lado</div></div>
+    </div>
+
+    <div class="ex-card" data-cat="ciatica" onclick="togEx(this)">
+      <div class="ex-hdr"><div class="ex-ico" style="background:rgba(224,92,92,.1)">⚡</div><div class="ex-meta"><h3>Estiramiento Piriforme (Figura 4)</h3><span>4 min · Nervio ciatico</span></div><span class="bdg bv">Facil</span><span class="ex-chev">▼</span></div>
+      <div class="ex-body"><ol class="ex-steps"><li>Boca arriba, rodillas dobladas.</li><li>Cruza el tobillo derecho sobre la rodilla izquierda.</li><li>Con manos detras del muslo izquierdo, acerca la pierna al pecho.</li><li>Sientes estiramiento en la cola derecha. Mantene 30-45 seg.</li><li>Cambia de lado. 3 reps por lado.</li></ol><div class="ex-tip">💡 El piriforme contracturado comprime el nervio ciatico. Respirar profundo durante el estiramiento lo potencia.</div><div class="ex-timer">⏱ 30-45 seg x 3 reps c/lado</div></div>
+    </div>
+
+    <div class="ex-card" data-cat="ciatica hernia" onclick="togEx(this)">
+      <div class="ex-hdr"><div class="ex-ico" style="background:rgba(155,127,232,.1)">🦵</div><div class="ex-meta"><h3>Deslizamiento neural del ciatico</h3><span>3 min · Movilizacion nerviosa</span></div><span class="bdg bam">Intermedio</span><span class="ex-chev">▼</span></div>
+      <div class="ex-body"><ol class="ex-steps"><li>Sentado en silla con espalda recta.</li><li>Extiende la pierna afectada con el pie en flexion (punta arriba).</li><li>Luego dobla la rodilla y apunta el pie abajo. Alternar suave.</li><li>10-15 reps lentas y fluidas.</li></ol><div class="ex-tip">💡 Moviliza el nervio dentro de su canal. Hormigueo leve es normal. Dolor fuerte = para. Hacelo 2 veces al dia.</div><div class="ex-timer">⏱ 10-15 reps · 3 series · 2x dia</div></div>
+    </div>
+
+    <div class="ex-card" data-cat="ciatica lumbar" onclick="togEx(this)">
+      <div class="ex-hdr"><div class="ex-ico" style="background:rgba(61,186,122,.1)">🧍</div><div class="ex-meta"><h3>Extension lumbar de pie (McKenzie)</h3><span>2 min · Ciatica + hernia</span></div><span class="bdg bv">Facil</span><span class="ex-chev">▼</span></div>
+      <div class="ex-body"><ol class="ex-steps"><li>Parate derecho, pies a la anchura de caderas.</li><li>Manos en zona lumbar, dedos apuntando abajo.</li><li>Inclinate suavemente hacia atras llevando la pelvis al frente.</li><li>2-3 seg. Vuelve al centro. 10 reps.</li></ol><div class="ex-tip">💡 Ideal cada hora si trabajas sentado. Reduce la presion discal anterior que genera ciatica.</div><div class="ex-timer">⏱ 2-3 seg x 10 reps · cada hora</div></div>
+    </div>
+
+    <div class="ex-card" data-cat="cervical movilidad" onclick="togEx(this)">
+      <div class="ex-hdr"><div class="ex-ico" style="background:rgba(92,168,224,.1)">🔵</div><div class="ex-meta"><h3>Retraccion cervical (Chin Tuck)</h3><span>2 min · Postura cervical</span></div><span class="bdg bv">Facil</span><span class="ex-chev">▼</span></div>
+      <div class="ex-body"><ol class="ex-steps"><li>Sentado o de pie con espalda recta.</li><li>Sin mover hombros, desliza la cabeza hacia atras (doble menton).</li><li>Sientes estiramiento en la nuca. Mantene 5 seg.</li><li>Relaja. 10-15 reps. 3-4 veces al dia.</li></ol><div class="ex-tip">💡 Corrige el text neck. Por cada cm de cabeza hacia adelante, el cuello carga 4.5 kg extra.</div><div class="ex-timer">⏱ 5 seg x 15 reps · 3-4 veces al dia</div></div>
+    </div>
+
+    <div class="ex-card" data-cat="cervical movilidad" onclick="togEx(this)">
+      <div class="ex-hdr"><div class="ex-ico" style="background:rgba(232,168,76,.1)">🌊</div><div class="ex-meta"><h3>Movilidad cervical completa</h3><span>5 min · Rigidez de cuello</span></div><span class="bdg bv">Facil</span><span class="ex-chev">▼</span></div>
+      <div class="ex-body"><ol class="ex-steps"><li>FLEXION: menton al pecho 5 seg.</li><li>EXTENSION SUAVE: mira levemente arriba 5 seg. Evitar si hay vertigo.</li><li>LATERAL: oreja al hombro sin levantarlo. 10 seg c/lado.</li><li>ROTACION: gira a cada lado al limite comodo. 5 seg c/u.</li><li>3 circuitos. NUNCA circulos completos de cuello.</li></ol><div class="ex-tip">💡 Los circulos completos de cuello estan CONTRAINDICADOS — comprimen las arterias vertebrales. Solo movimientos dirigidos.</div><div class="ex-timer">⏱ 5-10 seg cada posicion · 3 circuitos</div></div>
+    </div>
+
+    <div class="ex-card" data-cat="trapecio cervical" onclick="togEx(this)">
+      <div class="ex-hdr"><div class="ex-ico" style="background:rgba(232,168,76,.1)">🎯</div><div class="ex-meta"><h3>Estiramiento trapecio superior</h3><span>4 min · Contractura trapecio</span></div><span class="bdg bv">Facil</span><span class="ex-chev">▼</span></div>
+      <div class="ex-body"><ol class="ex-steps"><li>Agarra el borde del asiento con la mano del lado a estirar.</li><li>Con la otra mano sobre la cabeza, lleva la oreja al hombro contrario.</li><li>Mantene 30-45 seg. Respira profundo.</li><li>Para intensificar: gira el menton hacia la axila.</li><li>3 reps por lado. Calor previo potencia el efecto.</li></ol><div class="ex-tip">💡 Calor humedo 5 min previo duplica la efectividad. Los puntos gatillo del trapecio generan dolor de cabeza referido.</div><div class="ex-timer">⏱ 30-45 seg x 3 reps c/lado</div></div>
+    </div>
+
+    <div class="ex-card" data-cat="trapecio" onclick="togEx(this)">
+      <div class="ex-hdr"><div class="ex-ico" style="background:rgba(61,186,122,.1)">🎱</div><div class="ex-meta"><h3>Automassaje con pelota</h3><span>5 min · Puntos gatillo trapecio</span></div><span class="bdg bv">Facil</span><span class="ex-chev">▼</span></div>
+      <div class="ex-body"><ol class="ex-steps"><li>Toma una pelota de tenis.</li><li>Coloca la pelota entre tu espalda y la pared a la altura del trapecio.</li><li>Localiza los puntos mas sensibles y presiona 30-60 seg.</li><li>Realiza pequenos circulos sobre el punto gatillo.</li><li>2-3 puntos por sesion. No mas de 5 min por zona.</li></ol><div class="ex-tip">💡 La presion sostenida desactiva los puntos gatillo. Puede doler rico — eso es normal y terapeutico.</div><div class="ex-timer">⏱ 30-60 seg por punto · 5 min total</div></div>
+    </div>
+
+    <div class="ex-card" data-cat="trapecio cervical" onclick="togEx(this)">
+      <div class="ex-hdr"><div class="ex-ico" style="background:rgba(61,186,122,.1)">🦅</div><div class="ex-meta"><h3>Retraccion de escapulas</h3><span>3 min · Postura y trapecio</span></div><span class="bdg bv">Facil</span><span class="ex-chev">▼</span></div>
+      <div class="ex-body"><ol class="ex-steps"><li>Brazos relajados a los costados.</li><li>Junta los omplatos hacia la columna (aplasta un lapiz imaginario).</li><li>Baja los hombros lejos de las orejas. Mantene 5 seg.</li><li>Relaja completamente entre reps.</li><li>15 reps, 3-4 veces al dia.</li></ol><div class="ex-tip">💡 Activa trapecio medio/inferior (debilitados) y alivia el superior (sobrecargado). Corrige la postura cifostica de escritorio.</div><div class="ex-timer">⏱ 5 seg x 15 reps · varias veces al dia</div></div>
+    </div>
+
+    <div class="ex-card" data-cat="core hernia lumbar" onclick="togEx(this)">
+      <div class="ex-hdr"><div class="ex-ico" style="background:rgba(61,186,122,.1)">🌉</div><div class="ex-meta"><h3>Puente de gluteos</h3><span>5 min · Estabilizacion lumbar</span></div><span class="bdg bam">Intermedio</span><span class="ex-chev">▼</span></div>
+      <div class="ex-body"><ol class="ex-steps"><li>Boca arriba, rodillas a 90°, pies planos en el suelo.</li><li>Apreta gluteos y levanta la pelvis — linea recta hombro-cadera-rodilla.</li><li>Mantene 3-5 seg contrayendo tambien el abdomen.</li><li>Baja vértebra por vértebra — no de golpe.</li><li>12-15 reps x 3 series. Progresion: levanta un pie alternando.</li></ol><div class="ex-tip">💡 Fortalece sin comprimir los discos. Pilar de la rehabilitacion de hernia lumbar. Fundamental para proteger L4-L5.</div><div class="ex-timer">⏱ 3-5 seg x 12-15 reps · 3 series</div></div>
+    </div>
+
+    <div class="ex-card" data-cat="core hernia lumbar ciatica" onclick="togEx(this)">
+      <div class="ex-hdr"><div class="ex-ico" style="background:rgba(155,127,232,.1)">🐦</div><div class="ex-meta"><h3>Pajaro-Perro (Bird-Dog)</h3><span>5 min · Core profundo</span></div><span class="bdg bam">Intermedio</span><span class="ex-chev">▼</span></div>
+      <div class="ex-body"><ol class="ex-steps"><li>Cuatro apoyos: columna neutral.</li><li>Extiende brazo derecho adelante + pierna izquierda atras simultaneamente.</li><li>5-8 seg. La cadera NO rota — es control, no velocidad.</li><li>Vuelve al centro y cambia de lado.</li><li>10 reps por lado x 3 series.</li></ol><div class="ex-tip">💡 Activa los multifidos y el transverso del abdomen — los musculos mas importantes para la estabilidad espinal profunda.</div><div class="ex-timer">⏱ 5-8 seg x 10 reps c/lado · 3 series</div></div>
+    </div>
+
+    <div class="ex-card" data-cat="core" onclick="togEx(this)">
+      <div class="ex-hdr"><div class="ex-ico" style="background:rgba(232,168,76,.1)">🧊</div><div class="ex-meta"><h3>Plancha terapeutica</h3><span>3 min · Core completo</span></div><span class="bdg bam">Intermedio</span><span class="ex-chev">▼</span></div>
+      <div class="ex-body"><ol class="ex-steps"><li>Apoyate en antebrazos y puntas de pie. Espalda recta.</li><li>Contrae el abdomen hacia la columna. Sin hundir ni levantar cadera.</li><li>Empieza con 15-20 seg. Aumenta progresivamente.</li><li>Version modificada: apoyar rodillas si es muy dificil.</li><li>3 series con descanso de 30 seg.</li></ol><div class="ex-tip">💡 Mas segura que los abdominales clasicos para personas con hernia discal. Es isometrica — sin movimiento de columna.</div><div class="ex-timer">⏱ 15-60 seg · 3 series · descanso 30 seg</div></div>
+    </div>
+
+    <div class="ex-card" data-cat="movilidad lumbar ciatica" onclick="togEx(this)">
+      <div class="ex-hdr"><div class="ex-ico" style="background:rgba(92,168,224,.1)">🧘</div><div class="ex-meta"><h3>Postura del nino (Child's Pose)</h3><span>3 min · Relajacion espinal total</span></div><span class="bdg bv">Facil</span><span class="ex-chev">▼</span></div>
+      <div class="ex-body"><ol class="ex-steps"><li>Arrodillate con dedos de pie juntos, rodillas separadas.</li><li>Baja el torso entre las rodillas extendiendo los brazos al frente.</li><li>Frente toca el suelo. Relaja completamente los hombros.</li><li>Respira profundo expandiendo la espalda.</li><li>Mantene 1-3 minutos. Ideal antes de dormir.</li></ol><div class="ex-tip">💡 Abre el sacro, estira la fascia toracolumbar y calma el sistema nervioso. La postura de relajacion espinal por excelencia.</div><div class="ex-timer">⏱ 1-3 minutos · antes de dormir</div></div>
+    </div>
+
+    <div class="ex-card" data-cat="movilidad hernia lumbar" onclick="togEx(this)">
+      <div class="ex-hdr"><div class="ex-ico" style="background:rgba(61,186,122,.1)">🌿</div><div class="ex-meta"><h3>Flexion lateral de tronco</h3><span>3 min · Cuadrado lumbar</span></div><span class="bdg bv">Facil</span><span class="ex-chev">▼</span></div>
+      <div class="ex-body"><ol class="ex-steps"><li>Parate con pies a la anchura de caderas.</li><li>Levanta el brazo derecho y dobla el tronco hacia la izquierda.</li><li>El brazo izquierdo baja hacia la pierna. No rotes — solo lateral.</li><li>Mantene 15-20 seg. Sientes estiramiento desde cadera hasta axila.</li><li>Alternar lados. 5 reps por lado.</li></ol><div class="ex-tip">💡 Moviliza los espacios intervertebrales laterales y estira el cuadrado lumbar — principal musculo de la lumbalgia lateral.</div><div class="ex-timer">⏱ 15-20 seg x 5 reps c/lado</div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ CONDICIONES ═══ -->
+<div class="panel" id="panel-condiciones">
+  <div class="stitle">🩺 Condiciones Vertebrales</div>
+  <p class="ssub">Toca una condicion para ver causas, sintomas y tratamiento detallado.</p>
+  <div class="cond-grid">
+    <div class="cond-card" onclick="showCond('hernia',this)"><div class="cond-emo">🩻</div><div class="cond-name">Hernia de disco</div><div class="cond-desc">Nucleo pulposo desplazado</div></div>
+    <div class="cond-card" onclick="showCond('ciatica',this)"><div class="cond-emo">⚡</div><div class="cond-name">Ciatica</div><div class="cond-desc">Dolor nervioso irradiado</div></div>
+    <div class="cond-card" onclick="showCond('cervical',this)"><div class="cond-emo">🔴</div><div class="cond-name">Cervicalgia</div><div class="cond-desc">Dolor cuello y cervicales</div></div>
+    <div class="cond-card" onclick="showCond('lumbalgia',this)"><div class="cond-emo">🌡️</div><div class="cond-name">Lumbalgia</div><div class="cond-desc">Dolor de espalda baja</div></div>
+    <div class="cond-card" onclick="showCond('trapecio',this)"><div class="cond-emo">💪</div><div class="cond-name">Contractura Trapecio</div><div class="cond-desc">Tension muscular cronica</div></div>
+    <div class="cond-card" onclick="showCond('escoliosis',this)"><div class="cond-emo">〰️</div><div class="cond-name">Escoliosis</div><div class="cond-desc">Curvatura lateral anormal</div></div>
+    <div class="cond-card" onclick="showCond('estenosis',this)"><div class="cond-emo">🔩</div><div class="cond-name">Estenosis espinal</div><div class="cond-desc">Canal espinal estrecho</div></div>
+    <div class="cond-card" onclick="showCond('artritis',this)"><div class="cond-emo">🦴</div><div class="cond-name">Artrosis vertebral</div><div class="cond-desc">Desgaste articular</div></div>
+    <div class="cond-card" onclick="showCond('cifosis',this)"><div class="cond-emo">🐢</div><div class="cond-name">Cifosis / Joroba</div><div class="cond-desc">Curvatura toracica excesiva</div></div>
+    <div class="cond-card" onclick="showCond('sacroiliaca',this)"><div class="cond-emo">🔷</div><div class="cond-name">Articulacion sacroiliaca</div><div class="cond-desc">Dolor cola y pelvis</div></div>
+    <div class="cond-card" onclick="showCond('lordosis',this)"><div class="cond-emo">🔄</div><div class="cond-name">Hiperlordosis</div><div class="cond-desc">Curvatura lumbar excesiva</div></div>
+    <div class="cond-card" onclick="showCond('fibro',this)"><div class="cond-emo">🌐</div><div class="cond-name">Fibromialgia</div><div class="cond-desc">Dolor muscular difuso</div></div>
+  </div>
+  <div id="condDetail"></div>
+  <div class="alert"><span>🚨</span><span><strong>Senales de alarma — consultar urgente:</strong> Perdida de control de vejiga o intestinos · Debilidad progresiva en piernas · Fiebre con dolor de espalda · Dolor nocturno que no cede · Trauma reciente con dolor intenso.</span></div>
+</div>
+
+<!-- ═══ POSTURA ═══ -->
+<div class="panel" id="panel-postura">
+  <div class="stitle">🪑 Guia de Postura</div>
+  <p class="ssub">La postura correcta previene el 80% de los problemas de columna.</p>
+  <div class="pos-card"><div class="pos-ico">💻</div><div class="pos-info"><h3>Trabajo en escritorio</h3><p><span class="gd"></span>Monitor a nivel de ojos (parte superior)<br><span class="gd"></span>Espalda apoyada 90-100° en el respaldo<br><span class="gd"></span>Pies completamente apoyados en el suelo<br><span class="gd"></span>Codos a 90°, munecas neutras<br><span class="gd"></span>Levantarse y moverse cada 30 minutos<br><span class="rd"></span>Encorvarse hacia la pantalla<br><span class="rd"></span>Cruzar piernas por mas de 20 min<br><span class="rd"></span>Telefono entre hombro y oreja</p></div></div>
+  <div class="pos-card"><div class="pos-ico">😴</div><div class="pos-info"><h3>Dormir</h3><p><span class="gd"></span>De lado: almohada entre rodillas<br><span class="gd"></span>Boca arriba: almohada bajo rodillas<br><span class="gd"></span>Colchon firme a semifirme<br><span class="gd"></span>Almohada que mantenga el cuello neutro<br><span class="rd"></span>Boca abajo: 8h de presion en cervicales<br><span class="rd"></span>Almohada muy alta o muy baja<br><span class="rd"></span>Colchon hundido en el centro</p></div></div>
+  <div class="pos-card"><div class="pos-ico">📱</div><div class="pos-info"><h3>Celular / Text neck</h3><p><span class="gd"></span>Telefono a nivel de los ojos<br><span class="gd"></span>Regla 20-20-20: descanso cada 20 min<br><span class="gd"></span>Auriculares para llamadas largas<br><span class="rd"></span>Cabeza inclinada 45° = 22 kg en cervicales<br><span class="rd"></span>Pantallas acostado boca arriba<br><span class="rd"></span>Mas de 2h seguidas sin descanso</p></div></div>
+  <div class="pos-card"><div class="pos-ico">🏋️</div><div class="pos-info"><h3>Levantar peso</h3><p><span class="gd"></span>Doblar rodillas y caderas, no la espalda<br><span class="gd"></span>Objeto pegado al cuerpo<br><span class="gd"></span>Contraer el core antes de levantar<br><span class="gd"></span>Exhalar durante el esfuerzo<br><span class="rd"></span>Doblar la columna para levantar<br><span class="rd"></span>Girar el tronco con carga<br><span class="rd"></span>Brazos extendidos con peso</p></div></div>
+  <div class="pos-card"><div class="pos-ico">🚗</div><div class="pos-info"><h3>Conducir / viajar</h3><p><span class="gd"></span>Rodillas levemente mas altas que caderas<br><span class="gd"></span>Soporte lumbar activo (almohada o rodillo)<br><span class="gd"></span>Parar y caminar 5 min cada 1-2h<br><span class="rd"></span>Asiento muy reclinado hacia atras<br><span class="rd"></span>Viajes de mas de 3h sin parada</p></div></div>
+  <div class="pos-card"><div class="pos-ico">🛒</div><div class="pos-info"><h3>Vida cotidiana</h3><p><span class="gd"></span>Lavar platos: un pie en reposapiés<br><span class="gd"></span>Mochila: dos tiras, pegada a la espalda<br><span class="gd"></span>Zapato de suela plana o poco tacon<br><span class="rd"></span>Cargar bolsas siempre del mismo lado<br><span class="rd"></span>Billetera en bolsillo trasero (comprime el ciatico)</p></div></div>
+  <div class="card"><div style="font-size:.85rem;font-weight:600;color:var(--tx);margin-bottom:7px;">⏰ Regla de los 30 Minutos</div><p style="font-size:.75rem;color:var(--mu);line-height:1.6;">El cuerpo no esta disenado para mantener la misma posicion mas de 30 min. Pararte y moverte 2-3 min reduce la presion discal un <strong style="color:var(--gr)">40%</strong> y reactiva la nutricion de los discos intervertebrales.</p></div>
+</div>
+
+<!-- ═══ NUTRICION ═══ -->
+<div class="panel" id="panel-nutricion">
+  <div class="stitle">💊 Nutricion &amp; Suplementos</div>
+  <p class="ssub">Lo que comes impacta directamente en la salud de tus discos, vertebras y musculos.</p>
+  <div class="card" style="margin-bottom:14px;"><div style="font-size:.82rem;font-weight:600;color:var(--tx);margin-bottom:8px;">🥗 Alimentos anti-inflamatorios para la columna</div><p style="font-size:.74rem;color:var(--mu);line-height:1.65;"><strong style="color:var(--gr)">Comer mas:</strong> Pescados grasos (salmon, sardina) · Aceite de oliva · Curcuma y jengibre · Frutas rojas · Verduras de hoja verde · Nueces · Palta · Brocoli<br><br><strong style="color:var(--rd)">Reducir:</strong> Azucar refinada · Harinas blancas · Grasas trans · Alcohol · Carnes procesadas · Gaseosas (desmineralizan los huesos)</p></div>
+  <div class="sup-card"><div class="sup-ico">☀️</div><div class="sup-info"><h3>Vitamina D3</h3><p>Esencial para la absorcion de calcio y mineralizacion osea. Muy deficiente en personas con dolor cronico de columna.</p><span class="stg sg">Evidencia alta</span><span class="stg sb">1000-4000 UI/dia</span></div></div>
+  <div class="sup-card"><div class="sup-ico">🦴</div><div class="sup-info"><h3>Magnesio</h3><p>Fundamental para la relajacion muscular y conduccion nerviosa. Reduce contracturas, calambres y tension muscular cronica.</p><span class="stg sg">Evidencia alta</span><span class="stg sb">300-400 mg/dia</span></div></div>
+  <div class="sup-card"><div class="sup-ico">🐟</div><div class="sup-info"><h3>Omega-3 (EPA + DHA)</h3><p>Antiinflamatorio natural. Reduce inflamacion discal y articular. Equivale a 2-3 porciones de pescado graso por semana.</p><span class="stg sg">Evidencia alta</span><span class="stg sb">2-3 g/dia</span></div></div>
+  <div class="sup-card"><div class="sup-ico">🌿</div><div class="sup-info"><h3>Curcuma (Curcumina)</h3><p>Antiinflamatorio natural con respaldo cientifico. Combinar con pimienta negra aumenta su absorcion hasta 20 veces.</p><span class="stg samb">Evidencia moderada</span><span class="stg sb">500-1000 mg/dia</span></div></div>
+  <div class="sup-card"><div class="sup-ico">🦑</div><div class="sup-info"><h3>Colageno hidrolizado</h3><p>Componente principal de los discos intervertebrales y cartílagos. Mantiene la elasticidad discal.</p><span class="stg samb">Evidencia moderada</span><span class="stg sb">10 g/dia</span></div></div>
+  <div class="sup-card"><div class="sup-ico">⚡</div><div class="sup-info"><h3>Complejo B (B1, B6, B12)</h3><p>Vitaminas neurotroficas que nutren y protegen los nervios. Especialmente util en ciatica y neuropatias.</p><span class="stg samb">Evidencia moderada</span><span class="stg sb">Segun etiqueta</span></div></div>
+  <div class="sup-card"><div class="sup-ico">💧</div><div class="sup-info"><h3>Hidratacion (agua)</h3><p>Los discos son 80% agua. La deshidratacion los aplana. Minimo 2 litros al dia para mantener los discos elasticos y nutridos.</p><span class="stg sg">Evidencia alta</span><span class="stg sb">2+ litros/dia</span></div></div>
+  <div class="sup-card"><div class="sup-ico">🫚</div><div class="sup-info"><h3>Glucosamina + Condroitin</h3><p>Componentes del cartilago. Reducen el dolor articular degenerativo. Mas util en artrosis vertebral.</p><span class="stg samb">Evidencia moderada</span><span class="stg sb">1500+1200 mg/dia</span></div></div>
+  <div class="disclaimer" style="margin-top:14px;"><span>⚠️</span><span>Consulta con tu medico antes de iniciar suplementacion, especialmente si tomas medicacion de base.</span></div>
+</div>
+
+<!-- ═══ PRIMEROS AUXILIOS ═══ -->
+<div class="panel" id="panel-primeros">
+  <div class="stitle">🚨 Primeros Auxilios Vertebrales</div>
+  <p class="ssub">Que hacer en las primeras horas ante una crisis de dolor agudo. Toca cada situacion.</p>
+
+  <div class="fa-card"><div class="fa-hdr" onclick="togFA(this)"><div class="fa-ico" style="background:rgba(224,92,92,.12)">⚡</div><div class="fa-meta"><h3>Lumbago agudo</h3><p>Dolor lumbar intenso, dificil moverse</p></div></div>
+  <div class="fa-body"><div class="step-row"><div class="step-num">1</div><div class="step-txt"><strong>No entrar en panico.</strong> El lumbago agudo es muy doloroso pero rara vez peligroso. El movimiento calmado ayuda mas que el reposo absoluto.</div></div><div class="step-row"><div class="step-num">2</div><div class="step-txt"><strong>Posicion antalgica:</strong> Boca arriba con almohada bajo rodillas, o de lado con almohada entre rodillas. Lo que mas alivie.</div></div><div class="step-row"><div class="step-num">3</div><div class="step-txt"><strong>Frio primeras 24-48h:</strong> Hielo envuelto en tela, 15-20 min, 3-4 veces al dia. Nunca directo en la piel.</div></div><div class="step-row"><div class="step-num">4</div><div class="step-txt"><strong>Calor despues de 48h:</strong> Bolsa de agua caliente o almohadilla. Relaja la musculatura en espasmo.</div></div><div class="step-row"><div class="step-num">5</div><div class="step-txt"><strong>Analgesicos:</strong> Ibuprofeno o naproxeno si no hay contraindicaciones. Paracetamol para el dolor. Seguir indicaciones del prospecto.</div></div><div class="step-row"><div class="step-num">6</div><div class="step-txt"><strong>Moverse suavemente:</strong> Caminatas cortas de 5-10 min ayudan mas que el reposo total.</div></div><div style="background:rgba(224,92,92,.07);border-left:3px solid var(--rd);padding:8px 11px;border-radius:0 9px 9px 0;font-size:.72rem;color:var(--mu);margin-top:9px;">🚨 Ir urgente si: fiebre, perdida de esfinteres, debilidad en piernas, trauma previo, sin mejora en 72h.</div></div></div>
+
+  <div class="fa-card"><div class="fa-hdr" onclick="togFA(this)"><div class="fa-ico" style="background:rgba(232,168,76,.12)">🔴</div><div class="fa-meta"><h3>Torticolis aguda</h3><p>Cuello bloqueado, dolor al girar</p></div></div>
+  <div class="fa-body"><div class="step-row"><div class="step-num">1</div><div class="step-txt"><strong>No forzar el movimiento.</strong> Intentar desbloquear a la fuerza empeora el espasmo reflejo.</div></div><div class="step-row"><div class="step-num">2</div><div class="step-txt"><strong>Calor humedo inmediato:</strong> Toalla caliente o ducha caliente en cuello y trapecio, 15-20 min.</div></div><div class="step-row"><div class="step-num">3</div><div class="step-txt"><strong>Analgesicos + relajante muscular:</strong> El medico puede indicar un relajante para romper el ciclo espasmo-dolor.</div></div><div class="step-row"><div class="step-num">4</div><div class="step-txt"><strong>Movimientos suaves dentro del rango libre:</strong> Solo lo que no duela. Sin forzar.</div></div><div class="step-row"><div class="step-num">5</div><div class="step-txt"><strong>Collar cervical:</strong> Solo si el medico lo indica y por no mas de 3-5 dias max.</div></div></div></div>
+
+  <div class="fa-card"><div class="fa-hdr" onclick="togFA(this)"><div class="fa-ico" style="background:rgba(155,127,232,.12)">⚡</div><div class="fa-meta"><h3>Crisis de ciatica aguda</h3><p>Dolor intenso que baja por la pierna</p></div></div>
+  <div class="fa-body"><div class="step-row"><div class="step-num">1</div><div class="step-txt"><strong>Posicion de alivio:</strong> De lado (lado sano abajo) con almohada entre rodillas a 90°. O boca arriba con almohadas bajo pantorrillas.</div></div><div class="step-row"><div class="step-num">2</div><div class="step-txt"><strong>Frio en zona lumbar:</strong> Primeras 48h en la zona donde nace el dolor (lumbar/cola), no en la pierna.</div></div><div class="step-row"><div class="step-num">3</div><div class="step-txt"><strong>Antiinflamatorios:</strong> Ibuprofeno 400-600mg cada 8h con comida si no hay contraindicaciones.</div></div><div class="step-row"><div class="step-num">4</div><div class="step-txt"><strong>Evitar estar sentado:</strong> La posicion sentada aumenta la presion discal hasta un 140%. Preferi estar de pie o acostado.</div></div><div class="step-row"><div class="step-num">5</div><div class="step-txt"><strong>Caminata corta:</strong> 5-10 min cada 2-3h es mas beneficioso que el reposo total.</div></div></div></div>
+
+  <div class="fa-card"><div class="fa-hdr" onclick="togFA(this)"><div class="fa-ico" style="background:rgba(61,186,122,.12)">💪</div><div class="fa-meta"><h3>Contractura muscular aguda</h3><p>Musculo en espasmo, nodulo duro y sensible</p></div></div>
+  <div class="fa-body"><div class="step-row"><div class="step-num">1</div><div class="step-txt"><strong>Calor inmediato:</strong> Las contracturas musculares responden mejor al calor desde el principio. 20-30 min.</div></div><div class="step-row"><div class="step-num">2</div><div class="step-txt"><strong>Compresion sobre el punto gatillo:</strong> Presion sostenida 30-60 seg hasta que ceda la tension.</div></div><div class="step-row"><div class="step-num">3</div><div class="step-txt"><strong>Estiramiento suave post-calor:</strong> Estirar el musculo hasta el limite natural. Mantener 30-45 seg.</div></div><div class="step-row"><div class="step-num">4</div><div class="step-txt"><strong>Hidratacion + magnesio:</strong> Las contracturas empeoran con deshidratacion y deficit de magnesio.</div></div></div></div>
+
+  <div class="info-box"><span>🌡️</span><span><strong>Frio vs. Calor:</strong> Frio (primeras 24-48h) para inflamacion aguda. Calor para contracturas musculares y dolor cronico. En caso de duda: frio primero.</span></div>
+</div>
+
+<!-- ═══ CUANDO IR ═══ -->
+<div class="panel" id="panel-medico">
+  <div class="stitle">🏥 ¿Cuando Consultar?</div>
+  <p class="ssub">Semaforo de sintomas para saber cuando podes manejarlo en casa y cuando necesitas atencion profesional.</p>
+  <div class="sem-item"><div class="sem-dot sdg"></div><div class="sem-txt"><h4>Manejable en casa (Verde)</h4><p>Dolor lumbar o cervical moderado sin irradiacion · Contractura sin perdida importante de movimiento · Mejora con reposo y cambio de posicion · Episodio ya conocido · Sin sintomas neurologicos.</p></div></div>
+  <div class="sem-item"><div class="sem-dot sda"></div><div class="sem-txt"><h4>Consultar medico en 24-72h (Amarillo)</h4><p>Dolor que irradia al brazo o pierna · Hormigueo o entumecimiento persistente · No mejora con analgesicos en 48h · Limitacion importante del movimiento · Primer episodio de dolor intenso.</p></div></div>
+  <div class="sem-item"><div class="sem-dot sdr"></div><div class="sem-txt"><h4>Urgencias — Ir ahora (Rojo)</h4><p>⚡ Perdida de control de vejiga o intestinos · ⚡ Debilidad progresiva en piernas o brazos · ⚡ Entumecimiento en zona genital · ⚡ Fiebre alta con dolor de espalda · ⚡ Trauma reciente con dolor intenso · ⚡ Dolor nocturno que no cede · ⚡ Perdida de equilibrio o coordinacion.</p></div></div>
+  <div class="stitle" style="font-size:1rem;margin:18px 0 12px;">👨‍⚕️ ¿A que profesional consultar?</div>
+  <div class="sup-card"><div class="sup-ico">👨‍⚕️</div><div class="sup-info"><h3>Medico clinico / Traumatologo</h3><p>Primera consulta. Diagnostico, estudios (Rx, RMN), medicacion y derivaciones.</p><span class="stg sg">Primera consulta</span></div></div>
+  <div class="sup-card"><div class="sup-ico">🤲</div><div class="sup-info"><h3>Quiropractico (DC)</h3><p>Especialista en columna vertebral. Manipulacion espinal, movilizacion articular, bloqueos vertebrales.</p><span class="stg sb">Columna y articulaciones</span></div></div>
+  <div class="sup-card"><div class="sup-ico">🏊</div><div class="sup-info"><h3>Fisioterapeuta / Kinesiologo</h3><p>Rehabilitacion fisica, ejercicio terapeutico, electroterapia (TENS, ultrasonido).</p><span class="stg sb">Rehabilitacion</span></div></div>
+  <div class="sup-card"><div class="sup-ico">🧠</div><div class="sup-info"><h3>Neurologo / Neurocirujano</h3><p>Compromiso neurologico severo o evaluacion de cirugia si el tratamiento conservador falla.</p><span class="stg samb">Casos complejos</span></div></div>
+  <div class="sup-card"><div class="sup-ico">🧘</div><div class="sup-info"><h3>Pilates / Yoga terapeutico</h3><p>Complemento ideal: fortalecimiento del core, flexibilidad y conciencia corporal.</p><span class="stg sg">Complementario</span></div></div>
+  <div class="card" style="margin-top:12px;"><div style="font-size:.82rem;font-weight:600;color:var(--tx);margin-bottom:7px;">📋 Estudios mas comunes para la columna</div><p style="font-size:.73rem;color:var(--mu);line-height:1.7;"><strong style="color:var(--tx)">Radiografia (Rx):</strong> Muestra hueso. Fracturas, alineacion, artrosis, osteoporosis.<br><strong style="color:var(--tx)">Resonancia Magnetica (RMN):</strong> La mas completa. Discos, nervios, hernias, medula espinal.<br><strong style="color:var(--tx)">Tomografia (TAC):</strong> Mejor para hueso detallado. Usa radiacion ionizante.<br><strong style="color:var(--tx)">Electromiografia (EMG):</strong> Evalua conduccion nerviosa. Confirma dano radicular en ciatica.</p></div>
+</div>
+
+<!-- ═══ AUTOTEST ═══ -->
+<div class="panel" id="panel-autotest">
+  <div class="stitle">📋 Autotest de Columna</div>
+  <p class="ssub">Responde las preguntas para recibir orientacion personalizada sobre tu dolor.</p>
+  <div class="test-card"><h3>🔍 ¿Donde te duele principalmente?</h3><p class="test-q">Elegi la zona mas afectada:</p>
+    <div class="test-opts">
+      <button class="test-opt" onclick="tst('loc','cervical',this)">🔴 Cuello, cervicales o nuca</button>
+      <button class="test-opt" onclick="tst('loc','dorsal',this)">🟡 Espalda media, entre los hombros</button>
+      <button class="test-opt" onclick="tst('loc','lumbar',this)">🟠 Espalda baja, zona lumbar</button>
+      <button class="test-opt" onclick="tst('loc','ciatica',this)">⚡ Lumbar + dolor que baja por la pierna</button>
+    </div>
+    <div class="test-res" id="r-loc"></div>
+  </div>
+  <div class="test-card"><h3>⏰ ¿Cuanto tiempo lleva el dolor?</h3><p class="test-q">Esto cambia el enfoque del tratamiento:</p>
+    <div class="test-opts">
+      <button class="test-opt" onclick="tst('tiempo','agudo',this)">⚡ Empezo hace menos de 48 horas</button>
+      <button class="test-opt" onclick="tst('tiempo','subagudo',this)">📅 Entre 1 semana y 1 mes</button>
+      <button class="test-opt" onclick="tst('tiempo','cronico',this)">📆 Mas de 3 meses</button>
+      <button class="test-opt" onclick="tst('tiempo','recurrente',this)">🔄 Va y viene hace mucho tiempo</button>
+    </div>
+    <div class="test-res" id="r-tiempo"></div>
+  </div>
+  <div class="test-card"><h3>🌡️ ¿Cuanto duele ahora?</h3><p class="test-q">Escala del 1 (leve) al 10 (insoportable):</p>
+    <div class="test-opts">
+      <button class="test-opt" onclick="tst('int','leve',this)">😐 1-3: Molesta pero puedo funcionar normal</button>
+      <button class="test-opt" onclick="tst('int','moderado',this)">😣 4-6: Limita algunas actividades del dia</button>
+      <button class="test-opt" onclick="tst('int','severo',this)">😫 7-8: Me cuesta mucho moverme</button>
+      <button class="test-opt" onclick="tst('int','incap',this)">🆘 9-10: No puedo funcionar en absoluto</button>
+    </div>
+    <div class="test-res" id="r-int"></div>
+  </div>
+  <div class="test-card"><h3>🧭 ¿Tenes alguno de estos sintomas?</h3><p class="test-q">Es muy importante saberlo:</p>
+    <div class="test-opts">
+      <button class="test-opt" onclick="tst('alarma','ninguna',this)">✅ No, ninguno de los siguientes</button>
+      <button class="test-opt" onclick="tst('alarma','neuro',this)">⚡ Hormigueo o debilidad en brazos o piernas</button>
+      <button class="test-opt" onclick="tst('alarma','esfinter',this)">🚨 Dificultad para controlar vejiga o intestino</button>
+      <button class="test-opt" onclick="tst('alarma','fiebre',this)">🌡️ Fiebre junto con el dolor de espalda</button>
+    </div>
+    <div class="test-res" id="r-alarma"></div>
+  </div>
+  <div class="disclaimer"><span>⚠️</span><span>Este autotest es orientativo. Ante cualquier duda o dolor persistente, consulta a un profesional de la salud.</span></div>
+</div>
+
+<button class="fab" id="fab" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// TABS
+function showTab(id,el){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  el.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+window.addEventListener('scroll',()=>{document.getElementById('fab').classList.toggle('show',window.scrollY>200);});
+
+// EJERCICIOS
+function togEx(card){
+  const b=card.querySelector('.ex-body');
+  const open=b.classList.contains('open');
+  document.querySelectorAll('.ex-body').forEach(x=>x.classList.remove('open'));
+  document.querySelectorAll('.ex-card').forEach(x=>x.classList.remove('oc'));
+  if(!open){b.classList.add('open');card.classList.add('oc');}
+}
+function filtEx(cat,btn){
+  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.ex-card').forEach(c=>{
+    c.style.display=(cat==='todos'||c.dataset.cat.includes(cat))?'':'none';
+  });
+  document.querySelectorAll('.ex-body').forEach(b=>b.classList.remove('open'));
+  document.querySelectorAll('.ex-card').forEach(c=>c.classList.remove('oc'));
+}
+
+// CAUSA-EFECTO
+function togCE(hdr){
+  const b=hdr.parentElement.querySelector('.ce-body');
+  const open=b.classList.contains('open');
+  document.querySelectorAll('.ce-body').forEach(x=>x.classList.remove('open'));
+  if(!open)b.classList.add('open');
+}
+
+// PRIMEROS AUXILIOS
+function togFA(hdr){
+  const b=hdr.parentElement.querySelector('.fa-body');
+  const open=b.classList.contains('open');
+  document.querySelectorAll('.fa-body').forEach(x=>x.classList.remove('open'));
+  if(!open)b.classList.add('open');
+}
+
+// COLUMNA SVG
+const VI={
+  C1:{t:'C1 — Atlas',d:'La primera vertebra cervical. Es un anillo oseo que sostiene el craneo. Permite el movimiento de decir SI (flexo-extension). No tiene cuerpo vertebral propiamente dicho.',p:'Cefalea occipital, vertigo postural, dolor en la base del craneo.',tip:'Las contracturas de los musculos suboccipitales en C1 son causa frecuente de cefalea matutina.'},
+  C2:{t:'C2 — Axis',d:'La segunda vertebra cervical. Tiene la apofisis odontoides alrededor de la cual gira el atlas. Permite el movimiento de decir NO (rotacion de la cabeza).',p:'Cefalea cervicogenica, dolor detras del ojo, rigidez al girar la cabeza.',tip:'El nervio mayor occipital (C2) es la causa mas frecuente de cefalea que empieza en la nuca y llega a la frente.'},
+  C3:{t:'C3 — Tercera cervical',d:'Vertebra cervical estandar. Junto con C4 contribuyen al nervio frenico (diafragma). El disco C2-C3 raramente produce hernia pero puede generar rigidez cervical.',p:'Dolor en zona lateral del cuello, sensacion de oido taponado sin causa real.',tip:'La compresion en C3 puede generar sensacion de oido taponado sin ningun problema real en el oido.'},
+  C4:{t:'C4 — Cuarta cervical',d:'Cada vez mas afectada por el uso del celular (text neck). Junto con C3 inervan el diafragma a traves del nervio frenico.',p:'Dolor en la parte alta del trapecio, dificultad para elevar el brazo.',tip:'La postura text neck genera el mayor estres en C3-C4 de toda la columna.'},
+  C5:{t:'C5 — Zona de riesgo',d:'Las articulaciones C4-C5 son zona frecuente de hernia cervical. El nervio C5 inerva el deltoides (hombro) y puede generar debilidad para elevar el brazo.',p:'Dolor en hombro, debilidad para levantar el brazo, hormigueo en cara lateral del brazo.',tip:'Si tenes dolor de hombro que no mejora con tratamiento local, descarta una hernia cervical C4-C5.'},
+  C6:{t:'C6 — NIVEL MAS AFECTADO',d:'C5-C6 es el disco cervical mas frecuentemente herniado. El nervio C6 inerva el biceps y el pulgar. Produce dolor que baja hasta el pulgar.',p:'Dolor que baja hasta el pulgar e indice, debilidad del biceps, hormigueo en el pulgar.',tip:'El hormigueo en el pulgar y cara radial del antebrazo es la senal clasica de hernia C5-C6.'},
+  C7:{t:'C7 — Vertebra prominente',d:'La mas grande de las cervicales. Su apofisis espinosa sobresale en el fondo del cuello. El disco C6-C7 es el segundo mas afectado por hernia cervical.',p:'Dolor que baja hasta el dedo medio, debilidad del triceps, hormigueo en dedos 2-3-4.',tip:'Al bajar la barbilla al pecho, podes palpar la apofisis espinosa de C7 — es la mas prominente del cuello.'},
+  'T1-T4':{t:'T1-T4 — Toracica alta',d:'Articuladas con las costillas superiores. Son relativamente poco moviles, lo que las protege de hernias. Propensas a artrosis facetaria y dolor postural.',p:'Dolor interescapular, sensacion de presion entre los hombros.',tip:'El dolor en T3-T4 es muy frecuente en cifosis postural y trabajo de escritorio.'},
+  'T5-T8':{t:'T5-T8 — Toracica media',d:'Zona de maxima cifosis toracica. Las hernias toracicas son raras pero cuando ocurren pueden comprimir la medula espinal.',p:'Dolor en banda alrededor del torax, sensacion de opresion.',tip:'Si tenes dolor toracico que no cambia con los movimientos, descarta causa cardiaca primero.'},
+  'T9-T12':{t:'T9-T12 — Toracica baja',d:'La transicion toraco-lumbar (T11-L2) es una zona de cambio biomecanico importante. Puede generar dolor similar a la lumbalgia.',p:'Dolor en la zona de transicion costolumbar, dolor que irradia hacia el flanco.',tip:'El sindrome de la costilla flotante puede generar dolor que se confunde con otras patologias.'},
+  L1:{t:'L1 — Primera lumbar',d:'L1 marca el inicio de la region lumbar. La medula espinal termina aproximadamente en L1-L2 (cono medular). Por debajo comienza la cola de caballo.',p:'Dolor inguinal (en la ingle), dolor en la parte anterior del muslo.',tip:'La hernia L1-L2 es rara pero puede confundirse con problemas de cadera o hernia inguinal.'},
+  L2:{t:'L2 — Segunda lumbar',d:'Las raices L2-L3 inervan la parte anterior del muslo. Una hernia genera dolor en la cara anterior de la pierna.',p:'Dolor en cara anterior del muslo, debilidad para flexionar la cadera.',tip:'El test de Lasegue inverso puede ser positivo en hernias L2-L3.'},
+  L3:{t:'L3 — Tercera lumbar',d:'El nervio L3 inerva el cuadriceps. La artrosis facetaria en L3 es muy frecuente despues de los 50 anos.',p:'Dolor en cara anterior e interna del muslo, debilidad para extender la rodilla.',tip:'La debilidad del cuadriceps es uno de los signos mas funcionales de compresion radicular en L3.'},
+  L4:{t:'L4 — Zona frecuente',d:'El nervio L4 inerva la cara interna de la pantorrilla y el tibial anterior. El disco L3-L4 tiene mayor prevalencia de hernia. Contribuye al reflejo rotuliano.',p:'Dolor en cara interna de pierna hasta el maleollo, debilidad para caminar en los talones.',tip:'El reflejo rotuliano puede estar disminuido o ausente en hernia L3-L4.'},
+  L5:{t:'L5 — EL MAS AFECTADO',d:'La hernia de disco L4-L5 es la MAS FRECUENTE de toda la columna (35% de todos los casos). El nervio L5 inerva el dorso del pie y el dedo gordo. La hernia severa puede generar pie caido.',p:'Dolor en cara posterior del gluteo y externa de la pierna hasta el dorso del pie y dedo gordo.',tip:'El pie caido (dificultad para levantar el pie al caminar) es senal de alarma de hernia L4-L5 severa. Ir a urgencias.'},
+  sacro:{t:'Sacro + Articulacion Sacroiliaca',d:'El sacro conecta la columna con la pelvis. La articulacion sacroiliaca puede bloquearse o inflamarse generando dolor en la cola que imita la ciatica. El disco L5-S1 es el segundo mas herniado.',p:'Dolor puntual en la parte superior del gluteo, empeora al levantarse de una silla.',tip:'La disfuncion sacroiliaca es muy frecuente durante y despues del embarazo.'},
+  coccix:{t:'Coccix',d:'El coccix son 3-4 vertebras fusionadas. La coccigodinia (dolor en el coccix) ocurre por caidas sentado o por el parto.',p:'Dolor al sentarse, especialmente en superficies duras. Empeora al levantarse.',tip:'El cojin en forma de dona (con hueco en el centro) alivia el dolor del coccix al sentarse.'}
+};
+const DI={
+  'C1-C2':{t:'Disco C1-C2',d:'Esta articulacion no tiene disco intervertebral clasico. Es un pivote. Raramente se hernia.',tip:'Las lesiones aqui suelen ser traumaticas (accidentes de auto, caidas).'},
+  'C5-C6':{t:'Disco C5-C6 — El mas herniado cervical',d:'El disco cervical mas frecuentemente herniado. Afecta la raiz C6. El dolor baja hasta el pulgar.',tip:'Hormigueo en el pulgar y cara radial del antebrazo = senal clasica de hernia C5-C6.'},
+  'T12-L1':{t:'Disco T12-L1 — Transicion',d:'Union toraco-lumbar. Zona de cambio biomecanico. La hernia aqui puede generar dolor inguinal.',tip:'El dolor en la ingle sin causa urologica puede ser una hernia T12-L1.'},
+  'L1-L2':{t:'Disco L1-L2',d:'Hernia poco frecuente. Afecta la raiz L2 generando dolor en la cara anterior del muslo.',tip:'Frecuentemente confundida con dolor de cadera o hernia inguinal.'},
+  'L2-L3':{t:'Disco L2-L3',d:'Hernia poco frecuente. Afecta la raiz L3 generando dolor y debilidad en el cuadriceps.',tip:'La debilidad para subir escaleras puede ser signo de compresion L2-L3.'},
+  'L3-L4':{t:'Disco L3-L4 — Frecuente',d:'Tercer nivel lumbar mas afectado. Compresion de la raiz L4. Dolor en cara interna de pierna.',tip:'El reflejo rotuliano disminuido mas dolor lumbar orienta a hernia L3-L4.'},
+  'L4-L5':{t:'Disco L4-L5 — EL MAS HERNIADO',d:'El disco mas frecuentemente herniado de todo el cuerpo humano (35% de todos los casos). Comprime la raiz L5 generando dolor en el dorso del pie y dedo gordo.',tip:'El hormigueo en el dorso del pie y la dificultad para levantar el pie (pie caido) son senales de alarma de hernia L4-L5 severa.'},
+  'L5-S1':{t:'Disco L5-S1 — Segundo mas afectado',d:'El segundo disco mas frecuentemente herniado (30% de los casos). Comprime la raiz S1 generando dolor en el talon y borde externo del pie.',tip:'El reflejo aquiliano (tobillo) disminuido junto con dolor en el talon orienta a hernia L5-S1. La raiz S1 forma parte del nervio ciatico.'}
+};
+
+function selV(id){
+  document.querySelectorAll('.vg').forEach(g=>g.classList.remove('av'));
+  const el=document.getElementById('v'+id);
+  if(el)el.classList.add('av');
+  const d=VI[id];if(!d)return;
+  const box=document.getElementById('spineInfo');
+  box.innerHTML=`<h4>🦴 ${d.t}</h4><p style="margin-bottom:7px;">${d.d}</p><p style="font-size:.7rem;color:var(--rd);margin-bottom:5px;"><strong>⚡ Sintomas frecuentes:</strong> ${d.p}</p><p style="font-size:.7rem;color:var(--gr);">💡 ${d.tip}</p>`;
+  box.classList.add('show');
+  box.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function selD(id,e){
+  if(e)e.stopPropagation();
+  const d=DI[id];if(!d)return;
+  const box=document.getElementById('spineInfo');
+  box.innerHTML=`<h4>💿 ${d.t}</h4><p style="margin-bottom:7px;">${d.d}</p><p style="font-size:.7rem;color:var(--gr);">💡 ${d.tip}</p>`;
+  box.classList.add('show');
+  box.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// CONDICIONES
+const CD={
+  hernia:{t:'🩻 Hernia de Disco',d:'El disco tiene anillo fibroso (exterior) y nucleo pulposo (interior gelatinoso). La hernia ocurre cuando el nucleo empuja el anillo y comprime raices nerviosas. Los niveles mas frecuentes: L4-L5 (35%), L5-S1 (30%) y C5-C6 (cervicales).',items:['90% de los casos resuelven SIN cirugia con tratamiento conservador en 3-6 meses.','Fases: disco degenerado → protrusion → extrusion → secuestro (fragmento libre).','Tratamiento: reposo relativo, antiinflamatorios, fisioterapia, metodo McKenzie.','Frio primeras 48h luego calor alternado. Evitar flexion y carga.','Cirugia (microdiscectomia): solo si hay deficit neurologico o fracaso del tratamiento.','Prevencion: core fuerte, no fumar, hidratacion, ergonomia correcta.']},
+  ciatica:{t:'⚡ Ciatica',d:'Dolor que sigue el nervio ciatico desde la lumbar/gluteo hasta el pie. Causa mas frecuente: hernia L4-L5 o L5-S1. Tambien puede ser sindrome del piriforme (falsa ciatica).',items:['Sintomas: quemazón, descarga electrica, hormigueo o entumecimiento en pierna y pie.','Falsa ciatica: el piriforme contracturado puede comprimir el nervio ciatico.','Tratamiento: estiramiento del piriforme, McKenzie, neurodinamica, antiinflamatorios.','Evitar posicion sentada prolongada: aumenta la presion discal un 140%.','80% de los casos mejoran en 6 semanas con tratamiento conservador.','Senal de alarma: debilidad progresiva en pierna o pie caido — ir a urgencias.']},
+  cervical:{t:'🔴 Cervicalgia',d:'Dolor en la region cervical (C1-C7). Puede irradiarse a la cabeza, hombros y brazos. La postura de cabeza adelantada (text neck) es la causa mas frecuente en la era digital.',items:['Por cada 2.5 cm de cabeza hacia adelante, la carga cervical aumenta 4.5 kg.','Cefalea cervicogenica: dolor de cabeza originado en articulacion C1-C2-C3.','Vertigo cervical: origen en musculos suboccipitales tensos y artrosis cervical.','Tratamiento: chin tuck, movilidad cervical, calor, masaje, almohada ergonomica.','Nunca hacer circulos completos de cuello — comprimen las arterias vertebrales.','La pantalla a nivel de los ojos es la medida preventiva mas efectiva.']},
+  lumbalgia:{t:'🌡️ Lumbalgia',d:'Dolor en zona lumbar (L1-L5). Causa #1 de discapacidad laboral en el mundo. El 80% de la poblacion lo padeceera alguna vez.',items:['Aguda: reposo RELATIVO, calor, antiinflamatorios, moverse suave.','Cronica: el ejercicio terapeutico es el tratamiento mas efectivo a largo plazo.','Fortalecer: gluteos, transverso del abdomen, multifidos y erectores espinales.','El reposo absoluto prolongado EMPEORA el pronostico — el movimiento es medicina.','Factores de riesgo: sedentarismo, obesidad, trabajo fisico, estres emocional, tabaco.','Mindfulness y terapia cognitiva reducen la discapacidad en lumbalgia cronica.']},
+  trapecio:{t:'💪 Contractura del Trapecio',d:'El trapecio va del occipucio hasta la 12a vertebra toracica. Su porcion superior acumula mas tension postural y emocional. Los puntos gatillo generan dolor referido a la cabeza.',items:['Causa: estres cronico, hombros elevados, trabajo de escritorio, frio.','Puntos gatillo generan dolor referido a cabeza, cuello y ojo.','Tratamiento agudo: calor humedo 15-20 min + compresion sobre el punto gatillo.','Pelota de tenis contra la pared: el automassaje mas efectivo para esta zona.','Ejercicio: retraccion escapular fortalece trapecio medio/inferior.','Prevencion: ajustar altura del monitor, soporte de antebrazos, gestion del estres.']},
+  escoliosis:{t:'〰️ Escoliosis',d:'Curvatura lateral anormal de la columna (angulo de Cobb >10°). 80% idiopatica. Puede ser postural (funcional) o estructural.',items:['Leve (<20° Cobb): ejercicio terapeutico especifico, Metodo Schroth.','Moderada (20-40° Cobb): corse ortopedico (Boston, Cheneau) + Schroth.','Severa (>40-50° Cobb): evaluacion quirurgica (artrodesis vertebral).','Schroth: fisioterapia 3D especifica para escoliosis — la mas efectiva.','Natacion y pilates reformer son actividades muy recomendadas.','El diagnostico temprano en adolescentes en crecimiento es critico.']},
+  estenosis:{t:'🔩 Estenosis Espinal',d:'Estrechamiento del canal espinal que comprime la medula o raices. Principal causa: cambios degenerativos. Frecuente en mayores de 60 anos.',items:['Sintoma lumbar clasico: claudicacion neurogenica — piernas que fallan al caminar, mejora al sentarse.','Sintoma cervical: mielopatia — torpeza en manos, dificultad para caminar.','RMN: el estudio gold standard para ver el grado de compresion.','Tratamiento: fisioterapia, epidurales, descompresion quirurgica en casos severos.','La posicion en flexion alivia: caminar inclinado o bicicleta estatica.','El ejercicio acuatico descarga el peso y permite mayor movilidad.']},
+  artritis:{t:'🦴 Artrosis Vertebral',d:'Degeneracion del cartilago en las articulaciones facetarias. Muy frecuente despues de los 50 anos. Tambien llamada espondiloartrosis.',items:['Sintomas: rigidez matutina que mejora con el movimiento, dolor al final del dia.','Es mecanica y degenerativa, no autoinmune.','El movimiento es el mejor medicamento — la inactividad acelera la degeneracion.','Tratamiento: natacion, bicicleta, caminata, calor, analgesicos, suplementos.','Suplementos: glucosamina + condroitin, omega-3, colageno tipo II.','Infiltraciones facetarias con corticoide: muy efectivas en brotes agudos.']},
+  cifosis:{t:'🐢 Cifosis / Hipercifosis',d:'Curvatura convexa exagerada de la columna toracica (>45°). La mas comun es la cifosis postural, reversible con ejercicio.',items:['Cifosis postural: corregible con extension toracica y fortalecimiento.','Ejercicios clave: extension sobre rodillo de espuma, retraccion escapular.','Cifosis de Scheuermann: cunas vertebrales en adolescentes. Corse en crecimiento.','Osteoporosis: fractura por compresion — calcio + vitamina D + medicacion.','Evitar: postura encorvada constante, crunch clasico.','La mayoria de cifosis posturales responden muy bien al ejercicio en 3-6 meses.']},
+  sacroiliaca:{t:'🔷 Disfuncion Sacroiliaca',d:'La articulacion sacroiliaca puede bloquearse o inflamarse. El dolor en la cola puede confundirse con ciatica o hernia lumbar.',items:['Sintomas: dolor puntual en la parte superior del gluteo, empeora al levantarse de una silla.','Mas frecuente en mujeres (el embarazo relaja los ligamentos sacroiliacos).','La diferencia con la ciatica: el dolor raramente baja mas alla de la rodilla.','Tratamiento: manipulacion quiropractica, ejercicios de estabilizacion pelvica.','Cinturon pelvico: puede aliviar en fase aguda, especialmente en embarazo.','Infiltracion con corticoide: muy efectiva en casos severos refractarios.']},
+  lordosis:{t:'🔄 Hiperlordosis Lumbar',d:'Curvatura concava exagerada de la zona lumbar. Genera presion en articulaciones facetarias posteriores. Frecuente con abdomen abultado y gluteos debiles.',items:['Causas: debilidad de gluteos y abdomen, psoas acortado, tacon alto.','Sintomas: dolor lumbar que empeora de pie o en extension, mejora al sentarse.','Ejercicios clave: puente de gluteos, core profundo, estiramiento del psoas.','Estiramiento del psoas: posicion de caballero (rodilla en suelo). 30 seg x 3.','El tacon alto aumenta la lordosis lumbar. Preferir suela plana.','Activar el encogimiento abdominal bajo al estar de pie.']},
+  fibro:{t:'🌐 Fibromialgia',d:'Sindrome de dolor muscular cronico generalizado con puntos sensibles, fatiga, alteraciones del sueno y niebla mental. Es una alteracion del procesamiento central del dolor.',items:['No es inflamatoria ni degenerativa — es una sensibilizacion central del sistema nervioso.','El ejercicio aerobico progresivo es el tratamiento mas efectivo a largo plazo.','Medicacion especifica: duloxetina, pregabalina, milnacipran.','El calor, hidroterapia y masaje alivian los sintomas musculares.','Apoyo psicologico (TCC) y mindfulness son parte esencial del tratamiento.','El diagnostico es clinico — no hay analisis o imagen que la confirme.']}
+};
+
+function showCond(id,el){
+  document.querySelectorAll('.cond-card').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  const d=CD[id];
+  document.getElementById('condDetail').innerHTML=`<div class="cond-det"><h3>${d.t}</h3><p>${d.d}</p><ul>${d.items.map(i=>`<li>${i}</li>`).join('')}</ul></div>`;
+  document.getElementById('condDetail').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// AUTOTEST
+const TR={
+  loc:{
+    cervical:`<strong style="color:var(--gr)">Zona cervical detectada.</strong><br>Causas mas frecuentes: text neck, contractura muscular, artrosis cervical, hernia C5-C6. Revisa la pestana Ejercicios (Cervical) y corrige la postura frente a pantallas. Si hay hormigueo en el brazo, consulta a un medico.`,
+    dorsal:`<strong style="color:var(--gr)">Zona dorsal / toracica.</strong><br>Causas frecuentes: contractura de trapecios, cifosis postural, artrosis facetaria. Los ejercicios de extension toracica y la correccion postural suelen resolver el 80% de los casos en 4-8 semanas.`,
+    lumbar:`<strong style="color:var(--gr)">Zona lumbar detectada.</strong><br>La zona mas frecuentemente afectada del cuerpo. Causas: contractura, hernia L4-L5 o L5-S1, artrosis, hiperlordosis. Revisa Ejercicios (Lumbar), Causa-Efecto y Primeros Auxilios si el dolor es agudo.`,
+    ciatica:`<strong style="color:var(--am)">Patron de ciatica detectado.</strong><br>Dolor que baja por la pierna sugiere compresion radicular (hernia L4-L5 o L5-S1) o sindrome del piriforme. Consulta con un medico para confirmar con resonancia. Mientras: evita estar sentado, usa el estiramiento del piriforme y McKenzie.`
+  },
+  tiempo:{
+    agudo:`<strong style="color:var(--gr)">Dolor agudo — primeras 48h.</strong><br>La fase mas intensa pero mas manejable. Sigue el protocolo de Primeros Auxilios: frio, reposo relativo, analgesicos si es necesario, caminatas cortas. La gran mayoria mejora sola en 1-2 semanas.`,
+    subagudo:`<strong style="color:var(--am)">Dolor subagudo (1 semana a 1 mes).</strong><br>Si no mejora con medidas basicas, es momento de consultar a un medico, quiropractico o kinesiologo. Inicia ejercicios terapeuticos progresivos. Este periodo es ideal para tratar y evitar que se haga cronico.`,
+    cronico:`<strong style="color:var(--am)">Dolor cronico (mas de 3 meses).</strong><br>En esta etapa hay componente de sensibilizacion central. El ejercicio regular es el tratamiento mas efectivo. Considera un enfoque multidisciplinar: quiropractico o kinesio + psicologia + nutricion.`,
+    recurrente:`<strong style="color:var(--am)">Dolor recurrente.</strong><br>Indica que hay un factor de base no resuelto: debilidad del core, mala ergonomia, estres. Es fundamental identificar la causa. Un especialista puede disenar un plan de prevencion personalizado para vos.`
+  },
+  int:{
+    leve:`<strong style="color:var(--gr)">Dolor leve — manejable en casa.</strong><br>Podes tratarlo con ejercicios terapeuticos, ajuste de postura y habitos. Aprovecha para investigar la causa y corregirla antes de que se intensifique.`,
+    moderado:`<strong style="color:var(--am)">Dolor moderado.</strong><br>Si no mejora en 5-7 dias con medidas basicas, consulta con un profesional. No te acostumbres a vivir con dolor moderado — tiene solucion. Revisa la pestana de Ejercicios y Primeros Auxilios.`,
+    severo:`<strong style="color:var(--am)">Dolor severo.</strong><br>Consulta con un medico o especialista en las proximas 24-48 horas. Mientras tanto busca la posicion mas comoda, toma analgesicos segun indicacion y aplica frio o calor segun la causa.`,
+    incap:`<strong style="color:var(--rd)">Dolor incapacitante.</strong><br>Necesitas atencion medica HOY. Si ademas tenes perdida de control de vejiga o intestinos, o debilidad en piernas, ir a urgencias inmediatamente sin esperar.`
+  },
+  alarma:{
+    ninguna:`<strong style="color:var(--gr)">Sin senales de alarma.</strong><br>Buenas noticias — tu cuadro no sugiere urgencia neurologica. Podes seguir el seguimiento ambulatorio estandar con los ejercicios y recomendaciones de esta app.`,
+    neuro:`<strong style="color:var(--am)">Sintoma neurologico presente.</strong><br>El hormigueo o debilidad en extremidades sugiere posible compresion radicular. Consulta a un medico o neurologo en los proximos dias. Una resonancia magnetica puede confirmar el diagnostico.`,
+    esfinter:`<strong style="color:var(--rd)">SENAL DE ALARMA GRAVE. La perdida de control de vejiga o intestino con dolor de espalda puede ser sindrome de cauda equina — una EMERGENCIA MEDICA. IR A URGENCIAS AHORA. No esperes.`,
+    fiebre:`<strong style="color:var(--rd)">Senal de alarma importante.</strong><br>Fiebre + dolor de espalda puede indicar infeccion espinal (espondilodiscitis) u otras causas graves. IR A UN MEDICO HOY. No es dolor mecanico comun.`
+  }
+};
+
+function tst(tipo,val,btn){
+  btn.closest('.test-card').querySelectorAll('.test-opt').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  const res=document.getElementById('r-'+tipo);
+  res.innerHTML=TR[tipo][val];
+  res.classList.add('show');
+}
+
+// CHAT IA
+let AKEY='',history=[],loading=false;
+fetch('/api/key').then(r=>r.json()).then(d=>{AKEY=d.key;}).catch(()=>{});
+
+const SYS=`Sos QuiroBot Pro, el asistente mas completo de salud vertebral y quiropractica. Estas disenado para ayudar a personas que sufren dolencias de columna. Tu tono es empatico, calido y directo.
+
+Cuando alguien describe dolor o sintomas, respondes con:
+1. Diagnostico orientativo (posible causa en lenguaje simple y accesible)
+2. Que hacer HOY en casa (ejercicios especificos, calor/frio, postura)
+3. Que EVITAR
+4. Cuando y a que profesional consultar
+
+Conoces a fondo: hernia de disco (L4-L5, L5-S1, C5-C6), ciatica, lumbalgia, cervicalgia, trapecio, escoliosis, estenosis espinal, artrosis vertebral, cifosis, hiperlordosis, articulacion sacroiliaca, fibromialgia, torticolis, cefalea tensional. Tambien conoces: metodo McKenzie, Schroth, neurodinamica, pilates terapeutico, ergonomia, nutricion para columna.
+
+Respondes en espanol rioplatense. Maximo 200 palabras. Usas emojis con moderacion. Al final recuerdas brevemente que tus respuestas son orientativas y no reemplazan la consulta profesional.`;
+
+function addMsg(role,html){
+  const m=document.getElementById('messages');
+  const d=document.createElement('div');
+  d.className='msg'+(role==='user'?' user':'');
+  const isB=role!=='user';
+  d.innerHTML=`<div class="ava ${isB?'bot':'usr'}">${isB?'🦴':'👤'}</div><div class="bbl ${isB?'bot':'usr'}">${html}</div>`;
+  m.appendChild(d);m.scrollTop=m.scrollHeight;
+}
+function showTyping(){
+  const m=document.getElementById('messages');
+  const d=document.createElement('div');
+  d.className='msg';d.id='typ';
+  d.innerHTML=`<div class="ava bot">🦴</div><div class="bbl bot"><div class="typing"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>`;
+  m.appendChild(d);m.scrollTop=m.scrollHeight;
+}
+function rmTyping(){const t=document.getElementById('typ');if(t)t.remove();}
+
+async function sendMsg(){
+  if(loading)return;
+  const inp=document.getElementById('chatInput');
+  const txt=inp.value.trim();if(!txt)return;
+  inp.value='';
+  addMsg('user',txt);
+  history.push({role:'user',content:txt});
+  loading=true;document.getElementById('sendBtn').disabled=true;showTyping();
+  try{
+    const key=AKEY||await fetch('/api/key').then(r=>r.json()).then(d=>d.key);
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:SYS,messages:history})
+    });
+    const data=await res.json();
+    const reply=data.content?.[0]?.text||'No pude generar respuesta. Intenta de nuevo.';
+    history.push({role:'assistant',content:reply});
+    rmTyping();addMsg('bot',reply.replace(/\n/g,'<br>'));
+  }catch(e){
+    rmTyping();addMsg('bot','Error de conexion. Verifica tu internet e intenta de nuevo.');
+  }
+  loading=false;document.getElementById('sendBtn').disabled=false;
+}
+
+// ═══ COLUMNA 3D - DATOS VERTEBRAS ═══
+var V3D = {
+  C1:{badge:'CERVICAL C1',bcolor:'rgba(92,168,224,.15)',btcolor:'#5CA8E0',title:'Atlas — C1',nombre:'Primera vertebra cervical',desc:'Es un anillo oseo sin cuerpo vertebral. Sostiene directamente el craneo y se articula con el occipucio. Permite el movimiento de "decir SI" (flexo-extension). Se denomina Atlas porque sostiene el peso del mundo (el craneo).',molestias:['Cefalea occipital (dolor en la base del craneo)','Vertigo postural y mareos al girar la cabeza','Rigidez en la parte alta del cuello','Dolor detras de los ojos','Dolores de cabeza matutinos frecuentes'],nervio:'Nervio suboccipital (C1). Inerva los musculos del cuero cabelludo y la base del craneo.',tip:'💡 Las contracturas de los musculos suboccipitales en C1 son la causa mas frecuente de cefalea matutina que empieza en la nuca y llega a la frente.'},
+  C2:{badge:'CERVICAL C2',bcolor:'rgba(92,168,224,.15)',btcolor:'#5CA8E0',title:'Axis — C2',nombre:'Segunda vertebra cervical',desc:'Tiene una protuberancia osea llamada apofisis odontoides alrededor de la cual gira el atlas. Permite el movimiento de "decir NO" (rotacion de la cabeza). Es la vertebra de rotacion cervical.',molestias:['Cefalea cervicogenica (dolor de cabeza con origen en el cuello)','Dolor detras del ojo y en la sien','Rigidez intensa al girar la cabeza','Nauseas relacionadas con el movimiento cervical','Sensacion de oido taponado sin causa otologica'],nervio:'Nervio mayor occipital (C2). Inerva gran parte del cuero cabelludo hasta la frente.',tip:'💡 El nervio mayor occipital (C2) es la causa mas frecuente de cefalea que empieza en la nuca y sube hasta la frente. Tratable con manipulacion quiropractica.'},
+  C3:{badge:'CERVICAL C3',bcolor:'rgba(92,168,224,.15)',btcolor:'#5CA8E0',title:'Tercera vertebra cervical — C3',nombre:'Vertebra cervical estandar',desc:'Vertebra cervical media. Junto con C4 contribuyen al nervio frenico que inerva el diafragma. El disco C2-C3 raramente produce hernia pero si puede generar bloqueos articulares.',molestias:['Dolor en la zona lateral del cuello','Sensacion de oido taponado sin problema real en el oido','Rigidez cervical lateral','Dolor que se irradia hacia la mandibula','Molestias al masticar o bostezar'],nervio:'Raiz C3 inerva parte del cuello y contribuye al nervio frenico (diafragma).',tip:'💡 La postura text neck (cabeza hacia adelante) genera el mayor estres en C3-C4. Elevar el telefono a la altura de los ojos es la prevencion mas efectiva.'},
+  C4:{badge:'CERVICAL C4',bcolor:'rgba(92,168,224,.15)',btcolor:'#5CA8E0',title:'Cuarta vertebra cervical — C4',nombre:'Vertebra cervical media',desc:'Cada vez mas afectada por el uso del celular. Junto con C3 forma parte del origen del nervio frenico. El disco C3-C4 puede herniarse en personas jovenes con mucho tiempo en pantallas.',molestias:['Dolor en la parte alta del trapecio','Dificultad para elevar el brazo','Sensacion de peso persistente en los hombros','Dolor que se irradia hacia el hombro','Tension muscular cronica en cuello y hombros'],nervio:'Raiz C4 inerva el deltoides (hombro) y contribuye al nervio frenico.',tip:'💡 Si tenes dolor de hombro que no mejora con tratamiento local, descarta una hernia cervical C3-C4. La artrosis en este nivel es muy frecuente en oficinistas.'},
+  C5:{badge:'CERVICAL C5 ⚠️',bcolor:'rgba(232,168,76,.15)',btcolor:'#E8A84C',title:'Quinta vertebra cervical — C5',nombre:'Zona de riesgo cervical',desc:'El disco C4-C5 es zona de riesgo creciente por el text neck. El nervio C5 inerva el musculo deltoides (hombro). La hernia C4-C5 puede generar debilidad real para levantar el brazo.',molestias:['Dolor que baja desde el cuello hacia el hombro','Debilidad muscular para levantar el brazo','Hormigueo en la cara lateral del brazo','Dolor nocturno en el hombro','Dificultad para llevar objetos con el brazo levantado'],nervio:'Raiz C5 inerva el deltoides y biceps (parte superior). Controla la flexion y abduccion del hombro.',tip:'💡 Si tenes dolor de hombro con debilidad para levantar el brazo, siempre descarta una hernia cervical C4-C5 antes de tratarlo como problema del hombro.'},
+  C6:{badge:'CERVICAL C6 🔴 CRITICO',bcolor:'rgba(224,92,92,.15)',btcolor:'#E05C5C',title:'Sexta vertebra cervical — C6',nombre:'El nivel cervical MAS afectado por hernia',desc:'El disco C5-C6 es el mas frecuentemente herniado de la region cervical. El nervio C6 inerva el biceps y la cara radial del antebrazo hasta el pulgar. La hernia aqui produce dolor que baja por el brazo hasta el pulgar.',molestias:['Dolor que baja desde el cuello hasta el PULGAR e indice','Hormigueo o entumecimiento en el pulgar','Debilidad del biceps (dificultad para doblar el codo)','Reflejo bicipital disminuido o ausente','Dolor nocturno intenso en el brazo que despierta','Dificultad para abrochar botones (por debilidad en los dedos)'],nervio:'Raiz C6 inerva el biceps, extensores de la muneca y cara radial del antebrazo. Reflejo: bicipital.',tip:'💡 El hormigueo en el pulgar y cara radial del antebrazo es la senal CLASICA de hernia C5-C6. Es la hernia cervical mas comun. 90% resuelve sin cirugia.'},
+  C7:{badge:'CERVICAL C7',bcolor:'rgba(92,168,224,.15)',btcolor:'#5CA8E0',title:'Septima vertebra cervical — C7',nombre:'Vertebra prominente del cuello',desc:'La mas grande de las cervicales. Su apofisis espinosa es la prominencia que se palpa al fondo del cuello al inclinar la cabeza. El disco C6-C7 es el segundo nivel cervical mas afectado por hernia.',molestias:['Dolor que baja hasta el DEDO MEDIO','Debilidad del triceps (dificultad para estirar el codo)','Hormigueo en dedos 2, 3 y 4','Dolor en el triceps y antebrazo posterior','Dificultad para actividades que requieren fuerza con el codo extendido'],nervio:'Raiz C7 inerva el triceps y extensores de los dedos. Reflejo: tricipital.',tip:'💡 Al bajar la barbilla al pecho podes palpar la apofisis espinosa de C7 — es la mas prominente. El hormigueo en el dedo medio es la senal caracteristica de hernia C6-C7.'},
+  T1:{badge:'TORACICA T1',bcolor:'rgba(106,154,106,.15)',btcolor:'#6B9E7A',title:'Primera vertebra toracica — T1',nombre:'Inicio de la region toracica',desc:'T1 se articula con la primera costilla. Es la transicion entre el cuello y el torax. La raiz T1 junto con C8 forman el plexo braquial que inerva los musculos intrisecos de la mano.',molestias:['Dolor en la parte superior de la espalda interescapular','Hormigueo en el menique y borde interno del brazo','Debilidad en los musculos pequenos de la mano','Dificultad para movimientos finos de los dedos','Dolor que se irradia hacia el borde interno del brazo'],nervio:'Raiz T1 junto con C8 inervan los musculos intrisecos de la mano (movimientos finos de los dedos).',tip:'💡 El dolor en T1 con hormigueo en el menique puede confundirse con sindrome del tunel cubital. La resonancia cervical diferencia ambos cuadros.'},
+  T2:{badge:'TORACICA T2',bcolor:'rgba(106,154,106,.15)',btcolor:'#6B9E7A',title:'Segunda vertebra toracica — T2',nombre:'Vertebra toracica alta',desc:'T2 se articula con la segunda costilla. Es relativamente inmovil gracias a la caja toracica, lo que la protege de hernias. Propensa a la artrosis facetaria.',molestias:['Dolor entre los omoplatos (zona interescapular)','Sensacion de presion o tension en la parte alta de la espalda','Dolor que empeora con la respiracion profunda','Rigidez matutina en la espalda alta','Dolor referido hacia el pecho o esternon'],nervio:'Raiz T2 inerva la piel de la parte superior del torax y axila.',tip:'💡 El dolor en T2 que empeora con la respiracion profunda suele ser artrosis facetaria o costovertebral. Responde bien al calor y ejercicios de extension toracica.'},
+  T3:{badge:'TORACICA T3',bcolor:'rgba(106,154,106,.15)',btcolor:'#6B9E7A',title:'Tercera vertebra toracica — T3',nombre:'Vertebra toracica media alta',desc:'T3 se articula con la tercera costilla. El segmento T3-T4 es muy frecuente en personas con cifosis postural y trabajo de escritorio.',molestias:['Dolor entre los omoplatos derecho e izquierdo','Sensacion de nudo o tension en el centro de la espalda','Dolor que empeora al estar sentado por horas','Rigidez al girar el tronco','Dolor referido al pecho anterior'],nervio:'Raiz T3 inerva la piel del tercio superior del torax anterior y posterior.',tip:'💡 El dolor en T3 es uno de los mas frecuentes en oficinistas. Los ejercicios de extension toracica sobre un rodillo de espuma son el tratamiento mas efectivo.'},
+  T4:{badge:'TORACICA T4',bcolor:'rgba(106,154,106,.15)',btcolor:'#6B9E7A',title:'Cuarta vertebra toracica — T4',nombre:'Vertebra toracica media',desc:'T4 marca aproximadamente el nivel de los pezones. La artrosis en T4 puede generar dolor que se irradia hacia el pecho y confundirse con cuadros cardiacos.',molestias:['Dolor interescapular persistente','Dolor que se irradia hacia el pecho o las costillas','Dificultad para respirar profundo sin dolor','Tension muscular cronica entre los omoplatos','Puede confundirse con dolor cardiaco (siempre descartar primero)'],nervio:'Raiz T4 inerva la piel alrededor del nivel del pezon.',tip:'💡 Siempre descarta causa cardiaca ante dolor en T4 que se irradia al pecho. Si el dolor cambia con los movimientos de la columna y no con el esfuerzo, suele ser de origen vertebral.'},
+  T5:{badge:'TORACICA T5',bcolor:'rgba(106,154,106,.15)',btcolor:'#6B9E7A',title:'Quinta vertebra toracica — T5',nombre:'Vertebra toracica media',desc:'T5 se encuentra en el centro de la region toracica, la mas curva (cifosis maxima). Raramente se hernia pero es propensa a la artrosis y bloqueos articulares.',molestias:['Dolor en la zona central de la espalda','Sensacion de opresion toracica','Dolor en banda alrededor del torax (neuralgia intercostal)','Dolor que empeora al rotar el tronco','Rigidez marcada al despertar'],nervio:'Raiz T5 inerva el dermatomio de la zona central del torax y abdomen superior.',tip:'💡 La neuralgia intercostal T5 genera un dolor en banda que rodea el torax como un cinto. Puede confundirse con problemas cardiacos o gastrointestinales.'},
+  T6:{badge:'TORACICA T6',bcolor:'rgba(106,154,106,.15)',btcolor:'#6B9E7A',title:'Sexta vertebra toracica — T6',nombre:'Vertebra toracica media',desc:'T6 se articula con la sexta costilla. En el plano frontal, T6 se encuentra aproximadamente a la altura del proceso xifoides del esternon.',molestias:['Dolor en la region central-baja de la espalda','Dolor que se irradia hacia el epigastrio (boca del estomago)','Puede simular gastritis o ulcera gastrica','Tension en las costillas medias','Dolor que empeora al inclinar el tronco hacia adelante'],nervio:'Raiz T6 inerva la zona del epigastrio y costillas medias.',tip:'💡 El dolor en T6 puede generar sintomas digestivos (nauseas, molestias epigastricas) de origen vertebral. Si los analgesicos gastrointestinales no ayudan, busca causa vertebral.'},
+  T7:{badge:'TORACICA T7',bcolor:'rgba(106,154,106,.15)',btcolor:'#6B9E7A',title:'Septima vertebra toracica — T7',nombre:'Vertebra toracica media-baja',desc:'T7 marca aproximadamente la parte inferior de los omoplatos. Es una zona de transicion entre la cifosis toracica maxima y la parte inferior del torax.',molestias:['Dolor bajo la punta de los omoplatos','Dolor costal que se irradia hacia adelante','Sensacion de presion en la region epigastrica','Dolor que empeora con la tos o la risa','Rigidez al doblarse hacia adelante'],nervio:'Raiz T7 inerva la zona del ombligo aproximadamente y costillas bajas.',tip:'💡 La artrosis en T7 es comun en personas con cifosis toracica acentuada. La natacion y los ejercicios de extension toracica son el mejor tratamiento conservador.'},
+  T8:{badge:'TORACICA T8',bcolor:'rgba(106,154,106,.15)',btcolor:'#6B9E7A',title:'Octava vertebra toracica — T8',nombre:'Vertebra toracica inferior',desc:'T8 es la vertebra que marca el inicio de la transicion hacia la region toracica baja. El disco T7-T8 raramente se hernia pero la artrosis facetaria es frecuente.',molestias:['Dolor en la zona baja de la espalda toracica','Sensacion de rigidez al girar el torso','Dolor costal bajo que se irradia hacia el abdomen','Molestias al estar parado por mucho tiempo','Dolor que mejora al acostarse y empeora al estar de pie'],nervio:'Raiz T8 inerva el dermatomio por encima del ombligo en la zona lateral.',tip:'💡 El dolor en T8-T9 puede simular problemas renales (dolor lumbar alto). Si el dolor no cambia con la presion en la espalda, descarta origen renal.'},
+  T9:{badge:'TORACICA T9',bcolor:'rgba(106,154,106,.15)',btcolor:'#6B9E7A',title:'Novena vertebra toracica — T9',nombre:'Vertebra toracica inferior',desc:'T9 marca aproximadamente el nivel del ombligo en el plano anterior. La transicion T9-T10 es una zona de mayor estres biomecanico por el cambio de curvatura.',molestias:['Dolor en la zona lumbar alta (espalda baja-media)','Dolor que se irradia hacia el abdomen o el flanco','Puede confundirse con dolor renal o abdominal','Rigidez al doblarse lateralmente','Sensacion de tension en las costillas flotantes'],nervio:'Raiz T9 inerva la zona del ombligo y el dermatomio abdominal medio.',tip:'💡 El dolor en T9 que se irradia al abdomen puede confundirse con cuadros gastrointestinales o renales. Si los analiticos son normales, busca causa vertebral.'},
+  T10:{badge:'TORACICA T10',bcolor:'rgba(106,154,106,.15)',btcolor:'#6B9E7A',title:'Decima vertebra toracica — T10',nombre:'Vertebra de transicion toracolumbar',desc:'T10 es parte de la transicion toraco-lumbar. Esta zona es biomecanicamente importante porque combina la rigidez del torax con la mayor movilidad lumbar.',molestias:['Dolor en la zona de transicion costolumbar','Dolor que simula lumbalgia pero de origen toracico','Sensacion de fatiga en la espalda baja al estar de pie','Dolor al inhalar profundamente','Rigidez matutina en la espalda media-baja'],nervio:'Raiz T10 inerva el dermatomio del abdomen bajo y zona inguinal alta.',tip:'💡 El dolor en T10 es muy frecuente en embarazadas por el cambio del centro de gravedad. Tambien comun en personas con lordosis lumbar exagerada.'},
+  T11:{badge:'TORACICA T11',bcolor:'rgba(106,154,106,.15)',btcolor:'#6B9E7A',title:'Decimoprimera vertebra toracica — T11',nombre:'Zona de transicion toracolumbar',desc:'T11 es una vertebra toracica atipica — su costilla (11a costilla flotante) no llega al esternon. Esta zona de transicion es mecanicamente exigente.',molestias:['Dolor en la zona de transicion toracolumbar','Sindrome de la costilla flotante (dolor en la 11a costilla)','Dolor que se irradia hacia la ingle','Sensacion de espasmo en la espalda baja lateral','Dolor con el movimiento de flexion-extension del tronco'],nervio:'Raiz T11 inerva parte del abdomen bajo y zona inguinal.',tip:'💡 El sindrome de la costilla flotante (11a y 12a costilla) puede generar dolor abdominal o en el flanco que se confunde con problemas renales o gastrointestinales.'},
+  T12:{badge:'TORACICA T12',bcolor:'rgba(106,154,106,.15)',btcolor:'#6B9E7A',title:'Duodecima vertebra toracica — T12',nombre:'Ultima vertebra toracica',desc:'T12 es la ultima vertebra toracica y el punto de transicion hacia las lumbares. El segmento T12-L1 es una zona de cambio biomecanico importante. El cuadrado lumbar se origina aqui.',molestias:['Dolor en la zona lumbar alta','Dolor que se irradia hacia la ingle o cadera','Espasmo del cuadrado lumbar (un lado de la espalda mas alto que el otro)','Dolor que empeora al inclinar el tronco hacia un lado','Confusion frecuente con lumbalgia tipica'],nervio:'Raiz T12 inerva la zona inguinal y la parte superior del muslo (cara anterior).',tip:'💡 El dolor en T12 con irradiacion a la ingle se confunde frecuentemente con hernia inguinal o problemas de cadera. La resonancia diferencia estas causas.'},
+  L1:{badge:'LUMBAR L1',bcolor:'rgba(232,168,76,.15)',btcolor:'#E8A84C',title:'Primera vertebra lumbar — L1',nombre:'Inicio de la region lumbar',desc:'L1 marca el inicio de las vertebras lumbares. Aqui termina la medula espinal (cono medular) y comienza la cola de caballo (cauda equina). Las hernias en L1-L2 son poco frecuentes.',molestias:['Dolor en la zona lumbar alta','Dolor inguinal (en la ingle) sin causa urologica','Dolor en la cara anterior del muslo','Sensacion de hormigueo en la ingle','Puede confundirse con hernia inguinal o problemas urologicos'],nervio:'Raiz L1 inerva la zona inguinal, la parte anterior del muslo y la zona genital alta.',tip:'💡 La hernia L1-L2 es rara (menos del 5% de las hernias lumbares) pero puede confundirse con hernia inguinal o problemas urologicos. La resonancia es diagnostica.'},
+  L2:{badge:'LUMBAR L2',bcolor:'rgba(232,168,76,.15)',btcolor:'#E8A84C',title:'Segunda vertebra lumbar — L2',nombre:'Vertebra lumbar alta',desc:'Las raices L2-L3 inervan la parte anterior del muslo. Una hernia en este nivel genera dolor en la cara anterior de la pierna, a diferencia de L4-L5 que genera sintomas posteriores.',molestias:['Dolor en la cara anterior (delantera) del muslo','Debilidad para flexionar la cadera (subir escaleras)','Dolor que baja por la cara anterior de la pierna','Hormigueo en la parte anterior del muslo','Dificultad para levantar la pierna al caminar (steppage)'],nervio:'Raiz L2 inerva el cuadriceps (cara anterior del muslo) y contribuye al reflejo rotuliano.',tip:'💡 El test de Lasegue inverso (extension de cadera en boca abajo) puede ser positivo en hernias L2-L3. A diferencia de la ciatica clasica, el dolor es en la parte delantera de la pierna.'},
+  L3:{badge:'LUMBAR L3',bcolor:'rgba(232,168,76,.15)',btcolor:'#E8A84C',title:'Tercera vertebra lumbar — L3',nombre:'Vertebra lumbar media',desc:'El nervio L3 inerva principalmente el cuadriceps. Una hernia L2-L3 o L3-L4 puede generar debilidad notable al extender la rodilla. La artrosis facetaria en L3 es muy frecuente despues de los 50.',molestias:['Dolor en cara anterior e interna del muslo','Debilidad para extender la rodilla (bajar escaleras)','Dificultad para incorporarse de una silla','Atrofia visible del cuadriceps en casos severos','Reflejo rotuliano disminuido','Dolor que se irradia hasta la rodilla por la cara interna'],nervio:'Raiz L3 inerva el cuadriceps femoral. El reflejo rotuliano (golpe en la rodilla) depende de L3-L4.',tip:'💡 La debilidad del cuadriceps (dificultad para extender la rodilla) es uno de los signos mas funcionales de compresion radicular en L3. Puede generar caidas al subir/bajar escaleras.'},
+  L4:{badge:'LUMBAR L4 ⚠️',bcolor:'rgba(232,168,76,.15)',btcolor:'#E8A84C',title:'Cuarta vertebra lumbar — L4',nombre:'Zona frecuente de hernia',desc:'El nervio L4 inerva el tibial anterior y la cara interna de la pantorrilla. El disco L3-L4 tiene creciente prevalencia de hernia. La raiz L4 contribuye al reflejo rotuliano.',molestias:['Dolor en cara interna de la pierna hasta el TOBILLO INTERNO','Debilidad para caminar en los talones (pie caido parcial)','Hormigueo en la cara interna de la pierna y el maléolo interno','Reflejo rotuliano disminuido o ausente','Dolor que empeora al estar sentado por horas','Sensacion de descarga electrica desde la lumbar hasta el tobillo'],nervio:'Raiz L4 inerva el tibial anterior, cuadriceps (parcial) y cara interna de la pantorrilla. Reflejo: rotuliano.',tip:'💡 El disco L3-L4 aparece en el SVG como disco de riesgo (naranja) porque es la tercera hernia lumbar mas frecuente. El reflejo rotuliano disminuido junto con dolor es senal diagnostica clave.'},
+  L5:{badge:'LUMBAR L5 🔴 EL MAS AFECTADO',bcolor:'rgba(224,92,92,.15)',btcolor:'#E05C5C',title:'Quinta vertebra lumbar — L5',nombre:'La vertebra MAS propensa a hernia de todo el cuerpo',desc:'La hernia de disco L4-L5 es la MAS FRECUENTE de todo el cuerpo humano (35% de todos los casos). El nervio L5 inerva el dorso del pie y el dedo gordo. La hernia severa puede generar pie caido.',molestias:['Dolor desde el gluteo bajando por la cara EXTERNA de la pierna hasta el dorso del PIE y dedo gordo','Hormigueo o entumecimiento en el dorso del pie','Debilidad para levantar el pie al caminar (PIE CAIDO — senal de alarma)','Dificultad para caminar en los dedos del pie','Dolor nocturno que despierta del sueno','Dificultad para bajar escaleras','Sensacion de descarga electrica desde la lumbar hasta el dedo gordo'],nervio:'Raiz L5 inerva el tibial anterior, el extensor del dedo gordo y los peroneos. Controla la dorsiflexion del pie.',tip:'💡 El PIE CAIDO (incapacidad de levantar el pie al caminar) es la senal de alarma mas seria de hernia L4-L5 severa. Requiere atencion urgente. Si el hormigueo esta en el dorso del pie y dedo gordo = L5.'},
+  sacro:{badge:'SACRO + SACROILIACA',bcolor:'rgba(155,127,232,.15)',btcolor:'#9B7FE8',title:'Sacro — S1 a S5',nombre:'Hueso sagrado — base de la columna',desc:'El sacro es el hueso triangular que conecta la columna vertebral con la pelvis. Formado por 5 vertebras fusionadas. El disco L5-S1 es el SEGUNDO mas frecuentemente herniado (30% de todos los casos). La articulacion sacroiliaca puede bloquearse generando dolor en la cola.',molestias:['Dolor en la parte superior del GLUTEO (cola) — confundible con ciatica','Dolor L5-S1: baja por la cara POSTERIOR de la pierna hasta el TALON y pie externo','Hormigueo o entumecimiento en el talon y borde externo del pie','Reflejo aquiliano (tobillo) disminuido o ausente','Debilidad para caminar en puntas de pie','Dolor sacroiliaco: puntual en el gluteo alto, empeora al levantarse de una silla','Dolor referido a la ingle en disfuncion sacroiliaca'],nervio:'Raiz S1 inerva el triceps sural (pantorrilla), el plantar del pie y el borde externo. Reflejo: aquiliano (tobillo).',tip:'💡 Si el hormigueo esta en el TALON y borde externo del pie = S1. El reflejo aquiliano (tobillo) disminuido confirma la compresion de S1. La disfuncion sacroiliaca es muy frecuente en embarazo y postparto.'},
+  coccix:{badge:'COCCIX',bcolor:'rgba(155,127,232,.15)',btcolor:'#9B7FE8',title:'Coccix — remanente evolutivo',nombre:'Vertebras fusionadas finales',desc:'El coccix es el remanente evolutivo del rabo, formado por 3-4 vertebras fusionadas. La coccigodinia (dolor en el coccix) suele ocurrir por caidas sentado, parto dificultoso o postura incorrecta prolongada.',molestias:['Dolor intenso al sentarse, especialmente en superficies duras','Dolor al levantarse de una silla (el mas caracteristico)','Molestia al estar sentado por mas de 10-15 minutos','Dolor durante las relaciones sexuales','Dolor al defecar o en la region perineal','Sensacion de incomodidad constante al sentarse'],nervio:'El coccix no tiene raices nerviosas funcionales per se, pero la region tiene muchas terminaciones del plexo coccigeo.',tip:'💡 El cojin en forma de dona (con hueco en el centro) alivia considerablemente el dolor del coccix al sentarse. La manipulacion quiropractica del coccix tiene excelentes resultados en coccigodinia cronica.'}
+};
+
+function selV3d(id) {
+  // Quitar seleccion anterior
+  document.querySelectorAll('.vg3d').forEach(g => {
+    g.style.filter = '';
+    g.style.opacity = '1';
+  });
+  // Marcar seleccionada
+  const el = document.getElementById('v3d-' + id);
+  if (el) {
+    el.style.filter = 'brightness(1.4) drop-shadow(0 0 8px rgba(61,186,122,0.85))';
+  }
+
+  const d = V3D[id];
+  if (!d) return;
+
+  // Ocultar default, mostrar info
+  document.getElementById('spine3d-default').style.display = 'none';
+  const info = document.getElementById('spine3d-info');
+  info.style.display = 'block';
+
+  // Badge
+  const badge = document.getElementById('v3d-badge');
+  badge.textContent = d.badge;
+  badge.style.background = d.bcolor;
+  badge.style.color = d.btcolor;
+  badge.style.border = '1px solid ' + d.btcolor + '44';
+
+  // Contenido
+  document.getElementById('v3d-title').textContent = d.title;
+  document.getElementById('v3d-nombre').textContent = d.nombre;
+  document.getElementById('v3d-desc').textContent = d.desc;
+  document.getElementById('v3d-nervio').textContent = d.nervio;
+  document.getElementById('v3d-tip').innerHTML = d.tip;
+
+  // Molestias
+  const ul = document.getElementById('v3d-molestias');
+  ul.innerHTML = d.molestias.map(m =>
+    '<li style="font-size:.72rem;color:#E8A0A0;padding:3px 0;border-bottom:1px solid rgba(224,92,92,.1);display:flex;gap:6px;line-height:1.4;"><span style=\'color:#E05C5C;flex-shrink:0;\'>•</span>' + m + '</li>'
+  ).join('');
+
+  // Scroll suave al panel de info
+  info.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+function setVista(tipo, btn) {
+  document.querySelectorAll('#panel-columna .fbtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  // Por ahora la vista es siempre lateral (podria expandirse)
+}
+
+
+function askChip(q){document.getElementById('chatInput').value=q;sendMsg();}
+</script>
 </body>
 </html>
